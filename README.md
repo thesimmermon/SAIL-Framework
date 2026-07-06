@@ -1,8 +1,6 @@
-remove the citation marks from this text:
-
 # SAIL: Software Architecture Iconographic Language
 
-[![Book: Applied Software Architecture](https://img.shields.io/badge/Book-Applied_Software_Architecture-blue.svg)](https://getsail.org/book)
+[![Book: Applied Software Architecture](https://img.shields.io/badge/Book-Applied_Software_Architecture-blue.svg)](https://www.amazon.com/dp/B0H5QKVND)
 [![Creator: Jim Simmermon](https://img.shields.io/badge/Creator-Jim_Simmermon-orange.svg)](https://www.linkedin.com/in/simmermon)
 
 **SAIL (Software Architecture Iconographic Language)** is an architecture description language designed to make system boundaries, interfaces, behaviors, constraints, and validation rules explicit for both human engineering teams and AI-assisted development workflows.
@@ -47,7 +45,7 @@ This repository is the practical companion to the book ***Applied Software Archi
 
 To fully understand the theory, iconographic design, and executive strategy behind the framework, you can find the official publication below:
 *   🛒 **[Purchase on Amazon (ISBN: 9798181660588)](https://www.amazon.com/dp/B0H5QKVND6)** 
-*   🔗 **[Official Framework Site](https://getsail.org/book)**
+*   🔗 **[Official Book Download Site](https://getsail.org/book)**
 
 ## 👨‍💻 About the Creator
 
