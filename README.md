@@ -42,7 +42,7 @@ Templates for integrating SAIL concepts into standard Architecture Decision Reco
 This repository is the practical companion to the book ***Applied Software Architecture: Mastering the SAIL Framework*** (published June 2026).
 
 To fully understand the theory, iconographic design, and executive strategy behind the framework, you can find the official publication below:
-*   🛒 **[Purchase on Amazon (ISBN: 9798181660588)](https://www.amazon.com/dp/B0D5S1L5X3)** *(Note: Replace with the exact short-link to your book)*
+*   🛒 **[Purchase on Amazon (ISBN: 9798181660588)](https://www.amazon.com/dp/B0H5QKVND6)** 
 *   🔗 **[Official Framework Site](https://getsail.org/book)**
 
 ## 👨‍💻 About the Creator
