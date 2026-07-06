@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://getsail.org/schema/sail-codebook.schema.json",
+  "title": "SAIL Codebook Schema",
+  "type": "object",
+  "required": [
+    "name",
+    "version",
+    "purpose",
+    "numericEnums",
+    "stringEnums",
+    "aiAgentRules"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "purpose": {
+      "type": "string"
+    },
+    "canonicalModelNote": {
+      "type": "string"
+    },
+    "numericEnums": {
+      "type": "object"
+    },
+    "stringEnums": {
+      "type": "object"
+    },
+    "aiAgentRules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

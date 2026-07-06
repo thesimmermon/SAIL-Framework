@@ -1,0 +1,314 @@
+{
+  "$schema": "https://getsail.org/schema/sail-codebook.schema.json",
+  "name": "SAIL Codebook",
+  "version": "0.1.1-draft",
+  "purpose": "Companion semantic map for SAIL .sail JSON files. Use this with sail.schema.json so humans and AI agents can interpret numeric enum values without guessing.",
+  "canonicalModelNote": "The .sail JSON model does not need to change. This codebook explains values already present in the canonical model.",
+  "numericEnums": {
+    "StructuralElementType": {
+      "fieldPaths": [
+        "Inventory.StructuralElements.*.ElementType"
+      ],
+      "values": {
+        "0": {
+          "name": "BoundaryParticipant",
+          "description": "External participant outside the system boundary; may be a person, external system, device, or other outside actor."
+        },
+        "1": {
+          "name": "System",
+          "description": "Deployable or independently accountable system boundary."
+        },
+        "2": {
+          "name": "Datastore",
+          "description": "Persistence, buffering, state, queue, bus, storage, or other data-holding component."
+        },
+        "3": {
+          "name": "ServiceUnit",
+          "description": "Leaf-level unit of responsibility where SAIL stops modeling internals."
+        }
+      }
+    },
+    "InteractionKind": {
+      "fieldPaths": [
+        "Inventory.Interactions.*.Kind"
+      ],
+      "values": {
+        "0": {
+          "name": "Simple",
+          "description": "A single interaction/scenario without decomposition."
+        },
+        "1": {
+          "name": "Composite",
+          "description": "An interaction decomposed into sub-interactions."
+        },
+        "2": {
+          "name": "Process",
+          "description": "A process interaction described by process steps and flow."
+        }
+      }
+    },
+    "DiagramType": {
+      "fieldPaths": [
+        "*.Type",
+        "*Diagrams.*.Type"
+      ],
+      "values": {
+        "0": {
+          "name": "StructuralContext",
+          "description": "Black-box structural boundary view: one subject system plus boundary participants and relationships."
+        },
+        "1": {
+          "name": "StructuralHierarchical",
+          "description": "Structural decomposition view showing internal systems, service units, datastores, and communication pathways."
+        },
+        "2": {
+          "name": "BehavioralContext",
+          "description": "Behavioral boundary/context view showing actors and high-level interactions."
+        },
+        "3": {
+          "name": "BehavioralInteraction",
+          "description": "Behavioral interaction view showing scenario participants and interaction relationships."
+        },
+        "4": {
+          "name": "BehavioralProcess",
+          "description": "Behavioral process view showing ordered process steps, decisions, start/end, and responsible elements."
+        },
+        "5": {
+          "name": "IntrinsicCharacteristicMap",
+          "description": "Intrinsic view showing characteristics, constraints, goals, risks, and quality attributes."
+        },
+        "6": {
+          "name": "Interface",
+          "description": "Interface definition view showing interface operations and contracts."
+        }
+      }
+    },
+    "AssumptionType": {
+      "fieldPaths": [
+        "Notebook.Assumptions.*.Type",
+        "Notebook.Assumptions.*.AssumptionType"
+      ],
+      "values": {
+        "0": {
+          "name": "Technical"
+        },
+        "1": {
+          "name": "Business"
+        },
+        "2": {
+          "name": "Resource"
+        },
+        "3": {
+          "name": "Schedule"
+        },
+        "4": {
+          "name": "Other"
+        }
+      }
+    },
+    "DecisionStatus": {
+      "fieldPaths": [
+        "Notebook.Decisions.*.Status"
+      ],
+      "values": {
+        "0": {
+          "name": "Proposed"
+        },
+        "1": {
+          "name": "Approved"
+        },
+        "2": {
+          "name": "Rejected"
+        },
+        "3": {
+          "name": "Deferred"
+        },
+        "4": {
+          "name": "Implemented"
+        }
+      }
+    },
+    "ReferenceType": {
+      "fieldPaths": [
+        "Notebook.References.*.Type",
+        "Notebook.References.*.ReferenceType"
+      ],
+      "values": {
+        "0": {
+          "name": "Standard"
+        },
+        "1": {
+          "name": "External"
+        },
+        "2": {
+          "name": "Internal"
+        },
+        "3": {
+          "name": "Documentation"
+        },
+        "4": {
+          "name": "Other"
+        }
+      }
+    },
+    "RiskImpact": {
+      "fieldPaths": [
+        "Notebook.Risks.*.Impact"
+      ],
+      "values": {
+        "0": {
+          "name": "Low"
+        },
+        "1": {
+          "name": "Medium"
+        },
+        "2": {
+          "name": "High"
+        },
+        "3": {
+          "name": "Critical"
+        }
+      }
+    },
+    "RiskStatus": {
+      "fieldPaths": [
+        "Notebook.Risks.*.Status"
+      ],
+      "values": {
+        "0": {
+          "name": "Active"
+        },
+        "1": {
+          "name": "Mitigated"
+        },
+        "2": {
+          "name": "Accepted"
+        },
+        "3": {
+          "name": "Closed"
+        }
+      }
+    },
+    "TodoStatus": {
+      "fieldPaths": [
+        "Notebook.Todos.*.Status"
+      ],
+      "values": {
+        "0": {
+          "name": "Open"
+        },
+        "1": {
+          "name": "InProgress"
+        },
+        "2": {
+          "name": "Completed"
+        },
+        "3": {
+          "name": "OnHold"
+        },
+        "4": {
+          "name": "Cancelled"
+        }
+      }
+    },
+    "TodoPriority": {
+      "fieldPaths": [
+        "Notebook.Todos.*.Priority"
+      ],
+      "values": {
+        "0": {
+          "name": "Low"
+        },
+        "1": {
+          "name": "Medium"
+        },
+        "2": {
+          "name": "High"
+        },
+        "3": {
+          "name": "Critical"
+        }
+      }
+    },
+    "DiagramElementEdge": {
+      "fieldPaths": [
+        "*.Connectors.*.SourceEdge",
+        "*.Connectors.*.TargetEdge",
+        "*Diagrams.*.Connectors.*.SourceEdge",
+        "*Diagrams.*.Connectors.*.TargetEdge"
+      ],
+      "status": "confirmed-from-enum",
+      "sourceEnum": "public enum DiagramElementEdge { None, Top, Bottom, Left, Right }",
+      "values": {
+        "0": {
+          "name": "None",
+          "description": "No specific edge is assigned."
+        },
+        "1": {
+          "name": "Top",
+          "description": "Connector attaches to the top edge of the diagram element."
+        },
+        "2": {
+          "name": "Bottom",
+          "description": "Connector attaches to the bottom edge of the diagram element."
+        },
+        "3": {
+          "name": "Left",
+          "description": "Connector attaches to the left edge of the diagram element."
+        },
+        "4": {
+          "name": "Right",
+          "description": "Connector attaches to the right edge of the diagram element."
+        }
+      }
+    }
+  },
+  "stringEnums": {
+    "OperationType": {
+      "fieldPaths": [
+        "Inventory.Interfaces.*.Operations.*.OperationType"
+      ],
+      "observedValues": [
+        "One Way",
+        "Request / Ack",
+        "Request / Response",
+        "Streaming",
+        "Webhook"
+      ],
+      "description": "Operation type is stored as a string in the observed .sail files, not as a numeric enum."
+    },
+    "DiagramObjectType": {
+      "fieldPaths": [
+        "*.Elements.*.$type",
+        "*.Connectors.*.$type",
+        "*Diagrams.*.Elements.*.$type",
+        "*Diagrams.*.Connectors.*.$type"
+      ],
+      "observedValues": [
+        "Diagram",
+        "CharMapDiagram",
+        "InterfaceDiagram",
+        "DiagramStructuralElement",
+        "DiagramInteraction",
+        "DiagramCharacteristic",
+        "DiagramProcessStep",
+        "DiagramOperation",
+        "DiagramContextGroup",
+        "DiagramStart",
+        "DiagramEnd",
+        "DiagramNote",
+        "DiagramCommunicationPathway",
+        "DiagramBehavioralConnector"
+      ]
+    }
+  },
+  "aiAgentRules": [
+    "Use sail.schema.json to validate document structure.",
+    "Use this codebook to interpret numeric values.",
+    "Do not infer the meaning of a numeric enum not listed here.",
+    "Resolve diagram IDs back to Inventory before making implementation decisions.",
+    "Treat CommunicationPathways and Interfaces as contract/boundary context.",
+    "Treat CharacteristicMaps as constraints, quality attributes, and architectural pressure.",
+    "Report architecture conflicts instead of silently bypassing defined boundaries or interfaces."
+  ]
+}

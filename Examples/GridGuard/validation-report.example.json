@@ -1,0 +1,25 @@
+{
+  "model": "ExampleModel",
+  "schema": "sail.schema.json",
+  "status": "warning",
+  "checks": [
+    {
+      "rule": "JSON-SCHEMA",
+      "severity": "pass",
+      "message": "Model JSON validates against schema."
+    },
+    {
+      "rule": "REF-CHECK-01",
+      "severity": "warning",
+      "message": "CommunicationPathway.InterfaceId is empty; this may be acceptable for unlabeled pathways.",
+      "path": "Inventory.CommunicationPathways.<id>.InterfaceId"
+    },
+    {
+      "rule": "REF-CHECK-02",
+      "severity": "error",
+      "message": "Referenced InterfaceOperationId does not exist in any interface operation catalog.",
+      "path": "Inventory.CommunicationPathways.<id>.InterfaceOperationId"
+    }
+  ],
+  "note": "Cross-reference rules are examples for a future SAIL validator; JSON Schema alone cannot enforce all of them."
+}

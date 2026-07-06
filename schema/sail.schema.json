@@ -1,0 +1,1811 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://getsail.org/schema/sail.schema.json",
+  "title": "SAIL Architecture Model Schema",
+  "description": "AI-friendly JSON Schema for SAIL architecture model files. This schema validates the JSON shape of .sail files and includes human/AI-readable descriptions. Use sail-codebook.json to interpret numeric enum values and diagram/type codes. Cross-reference integrity, such as whether every SourceId exists, should be checked by a separate model validator.",
+  "type": "object",
+  "required": [
+    "SuppressChangeNotifications",
+    "Name",
+    "Inventory",
+    "StructuralContextDiagram",
+    "HierarchicalDiagrams",
+    "BehavioralContextDiagram",
+    "InteractionDiagrams",
+    "CharacteristicMapDiagrams",
+    "InterfaceDiagrams",
+    "Notebook"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "SuppressChangeNotifications": {
+      "type": "boolean",
+      "description": "Runtime/editor flag used by tooling. It is not architecture semantics for AI agents."
+    },
+    "Name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Architecture/model name. Use this as the architecture identifier when generating summaries or AI-agent context."
+    },
+    "Inventory": {
+      "$ref": "#/$defs/Inventory",
+      "description": "Canonical inventory of structural elements, behavioral interactions, communication pathways, and interfaces. Diagrams reference these inventory items by ID."
+    },
+    "StructuralContextDiagram": {
+      "$ref": "#/$defs/Diagram",
+      "description": "Top-level structural context view. Defines the system boundary and external boundary participants."
+    },
+    "HierarchicalDiagrams": {
+      "$ref": "#/$defs/DiagramMap",
+      "description": "Structural decomposition diagrams. Used to understand systems, service units, datastores, and internal structural relationships."
+    },
+    "BehavioralContextDiagram": {
+      "$ref": "#/$defs/Diagram",
+      "description": "Top-level behavioral context view. Defines high-level interactions around the system boundary."
+    },
+    "InteractionDiagrams": {
+      "$ref": "#/$defs/DiagramMap",
+      "description": "Behavioral interaction and process diagrams. Used to understand scenarios, workflows, and responsibility flow."
+    },
+    "CharacteristicMapDiagrams": {
+      "$ref": "#/$defs/CharacteristicMapDiagramMap",
+      "description": "Intrinsic characteristic maps. Used to understand quality attributes, constraints, risks, goals, and related architectural pressure."
+    },
+    "InterfaceDiagrams": {
+      "$ref": "#/$defs/InterfaceDiagramMap",
+      "description": "Interface definition diagrams. Used to understand operations and contracts exposed or consumed by architecture elements."
+    },
+    "Notebook": {
+      "$ref": "#/$defs/Notebook",
+      "description": "Supplemental architecture records such as decisions, todos, assumptions, risks, journal entries, references, and stakeholders."
+    }
+  },
+  "$defs": {
+    "Uuid": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"
+    },
+    "OptionalUuidString": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Uuid"
+        },
+        {
+          "type": "string",
+          "maxLength": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "Color": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}$"
+    },
+    "Point": {
+      "type": "object",
+      "required": [
+        "X",
+        "Y"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        }
+      }
+    },
+    "Inventory": {
+      "type": "object",
+      "required": [
+        "StructuralElements",
+        "Interactions",
+        "CommunicationPathways",
+        "Interfaces"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "StructuralElements": {
+          "$ref": "#/$defs/StructuralElementMap",
+          "description": "Map of structural element ID to structural element definition."
+        },
+        "Interactions": {
+          "$ref": "#/$defs/InteractionMap",
+          "description": "Map of interaction ID to interaction definition."
+        },
+        "CommunicationPathways": {
+          "$ref": "#/$defs/CommunicationPathwayMap",
+          "description": "Map of communication pathway ID to structural relationship/contract reference."
+        },
+        "Interfaces": {
+          "$ref": "#/$defs/InterfaceMap",
+          "description": "Map of interface ID to interface contract definition."
+        }
+      },
+      "description": "Canonical architecture inventory. Diagrams are views over this inventory and should not be treated as the only source of architectural truth."
+    },
+    "StructuralElementMap": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/Uuid"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/StructuralElement"
+      }
+    },
+    "InteractionMap": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/Uuid"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/Interaction"
+      }
+    },
+    "CommunicationPathwayMap": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/Uuid"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/CommunicationPathway"
+      }
+    },
+    "InterfaceMap": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/Uuid"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/Interface"
+      }
+    },
+    "DiagramMap": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/Uuid"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/Diagram"
+      }
+    },
+    "CharacteristicMapDiagramMap": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/Uuid"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/CharacteristicMapDiagram"
+      }
+    },
+    "InterfaceDiagramMap": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/Uuid"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/InterfaceDiagram"
+      }
+    },
+    "StructuralElement": {
+      "type": "object",
+      "required": [
+        "Name",
+        "ElementType",
+        "SubType",
+        "Description",
+        "Refinement",
+        "Identifier",
+        "IsAbstract",
+        "IsMultipleInstances",
+        "IsStandIn",
+        "RepresentedElementIds",
+        "SubDiagramId",
+        "CharMapDiagramId",
+        "CharacteristicMap",
+        "Id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": "string",
+          "description": "Human-readable structural element name."
+        },
+        "ElementType": {
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "description": "SAIL structural element type code. Use the codebook to map code to BoundaryParticipant, System, Datastore, or ServiceUnit.",
+          "x-enumNames": [
+            "BoundaryParticipant",
+            "System",
+            "Datastore",
+            "ServiceUnit"
+          ],
+          "x-enumDescriptions": [
+            "External participant outside the system boundary; may be a person, external system, device, or other outside actor.",
+            "Deployable or independently accountable system boundary.",
+            "Persistence, buffering, state, queue, bus, storage, or other data-holding component.",
+            "Leaf-level unit of responsibility where SAIL stops modeling internals."
+          ]
+        },
+        "SubType": {
+          "type": "string",
+          "description": "Domain/tooling subtype or icon refinement, such as User, External System, Queue, Processor, or Integration."
+        },
+        "Description": {
+          "type": "string",
+          "description": "Responsibility or explanatory description for the element."
+        },
+        "Refinement": {
+          "type": "string",
+          "description": "Additional descriptive refinement, often used for technology, kind, or represented examples."
+        },
+        "Identifier": {
+          "type": "string",
+          "description": "Optional short identifier shown on diagrams."
+        },
+        "IsAbstract": {
+          "type": "boolean",
+          "description": "Whether the element represents an abstract concept rather than a concrete deployable/runtime thing."
+        },
+        "IsMultipleInstances": {
+          "type": "boolean",
+          "description": "Whether diagrams should indicate that multiple instances can exist."
+        },
+        "IsStandIn": {
+          "type": "boolean",
+          "description": "Whether the element represents a group/family/proxy rather than a single concrete item."
+        },
+        "RepresentedElementIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Uuid"
+          },
+          "description": "When this is a stand-in, IDs of represented structural elements."
+        },
+        "SubDiagramId": {
+          "$ref": "#/$defs/OptionalUuidString",
+          "description": "Diagram ID for structural decomposition of this element, when one exists."
+        },
+        "CharMapDiagramId": {
+          "$ref": "#/$defs/OptionalUuidString",
+          "description": "Characteristic map diagram ID for this element, when one exists."
+        },
+        "CharacteristicMap": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/CharacteristicMap"
+            }
+          ],
+          "description": "Inline characteristic map attached to this element, if present."
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid",
+          "description": "Canonical structural element ID. Should match the map key containing this item."
+        }
+      },
+      "description": "Canonical structural inventory item. Structural elements are referenced by diagrams and communication pathways. For AI agents, Name, ElementType, Description, SubType, Refinement, and IDs are the primary architectural context."
+    },
+    "CharacteristicMap": {
+      "type": "object",
+      "propertyNames": {
+        "$ref": "#/$defs/Uuid"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/CharacteristicGroup"
+      }
+    },
+    "CharacteristicGroup": {
+      "type": "object",
+      "required": [
+        "Name",
+        "Characteristics",
+        "Id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "Characteristics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Characteristic"
+          }
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid"
+        }
+      }
+    },
+    "Characteristic": {
+      "type": "object",
+      "required": [
+        "Name",
+        "Characteristics",
+        "Id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "Characteristics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Characteristic"
+          }
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid"
+        }
+      }
+    },
+    "Interaction": {
+      "type": "object",
+      "required": [
+        "Label",
+        "Kind",
+        "SubDiagramId",
+        "CharMapDiagramId",
+        "CharacteristicMap",
+        "Id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "Label": {
+          "type": "string",
+          "description": "Human-readable interaction label."
+        },
+        "Kind": {
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "description": "SAIL interaction kind code. Use the codebook to map code to Simple, Composite, or Process.",
+          "x-enumNames": [
+            "Simple",
+            "Composite",
+            "Process"
+          ],
+          "x-enumDescriptions": [
+            "A single interaction/scenario without decomposition.",
+            "An interaction decomposed into sub-interactions.",
+            "A process interaction described by process steps and flow."
+          ]
+        },
+        "SubDiagramId": {
+          "$ref": "#/$defs/OptionalUuidString",
+          "description": "Diagram ID that decomposes or details this interaction, when one exists."
+        },
+        "CharMapDiagramId": {
+          "$ref": "#/$defs/OptionalUuidString",
+          "description": "Characteristic map diagram ID for this interaction, when one exists."
+        },
+        "CharacteristicMap": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/$defs/CharacteristicMap"
+            }
+          ],
+          "description": "Inline characteristic map attached to this interaction, if present."
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid",
+          "description": "Canonical interaction ID. Should match the map key containing this item."
+        }
+      },
+      "description": "Canonical behavioral interaction inventory item. Interactions define scenarios, composites, or process-level behavior. Diagrams can reference interactions by ID."
+    },
+    "CommunicationPathway": {
+      "type": "object",
+      "required": [
+        "SourceId",
+        "TargetId",
+        "InterfaceId",
+        "InterfaceOperationId",
+        "Id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "SourceId": {
+          "$ref": "#/$defs/Uuid",
+          "description": "Structural element ID at one end of the relationship."
+        },
+        "TargetId": {
+          "$ref": "#/$defs/Uuid",
+          "description": "Structural element ID at the other end of the relationship."
+        },
+        "InterfaceId": {
+          "$ref": "#/$defs/OptionalUuidString",
+          "description": "Interface ID associated with this pathway, or empty string if no formal interface is defined."
+        },
+        "InterfaceOperationId": {
+          "$ref": "#/$defs/OptionalUuidString",
+          "description": "Operation ID associated with this pathway, or empty string if no operation is bound."
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid",
+          "description": "Canonical communication pathway ID. Should match the map key containing this item."
+        }
+      },
+      "description": "Canonical structural relationship between two structural elements. May optionally reference an interface and operation."
+    },
+    "Interface": {
+      "type": "object",
+      "required": [
+        "Name",
+        "Description",
+        "Version",
+        "DocumentationLocation",
+        "Operations",
+        "InterfaceDiagramId",
+        "Id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": "string",
+          "description": "Human-readable interface name."
+        },
+        "Description": {
+          "type": "string",
+          "description": "Interface purpose, protocol notes, or contract description."
+        },
+        "Version": {
+          "type": "string",
+          "description": "Interface version string, when known."
+        },
+        "DocumentationLocation": {
+          "type": "string",
+          "description": "External/internal documentation URL or location, when known."
+        },
+        "Operations": {
+          "type": "object",
+          "propertyNames": {
+            "$ref": "#/$defs/Uuid"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/InterfaceOperation"
+          },
+          "description": "Map of operation ID to operation definition."
+        },
+        "InterfaceDiagramId": {
+          "$ref": "#/$defs/OptionalUuidString",
+          "description": "Diagram ID for the interface definition diagram, when one exists."
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid",
+          "description": "Canonical interface ID. Should match the map key containing this item."
+        }
+      },
+      "description": "Reusable interface contract. Interfaces contain operations and may be referenced by communication pathways and interface diagrams."
+    },
+    "InterfaceOperation": {
+      "type": "object",
+      "required": [
+        "Name",
+        "Description",
+        "OperationType",
+        "OwnerId",
+        "Id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": "string",
+          "description": "Human-readable operation name."
+        },
+        "Description": {
+          "type": "string",
+          "description": "Operation description, payload notes, or behavior contract."
+        },
+        "OperationType": {
+          "type": "string",
+          "enum": [
+            "Request / Response",
+            "One Way",
+            "Request / Ack",
+            "Streaming",
+            "Webhook"
+          ],
+          "description": "Operation kind as a string, such as Request / Response, One Way, Streaming, Request / Ack, or Webhook.",
+          "x-observedValues": [
+            "One Way",
+            "Request / Ack",
+            "Request / Response",
+            "Streaming",
+            "Webhook"
+          ]
+        },
+        "OwnerId": {
+          "$ref": "#/$defs/OptionalUuidString",
+          "description": "Optional owner/provider element ID for the operation."
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid",
+          "description": "Canonical operation ID. Should match the map key containing this item."
+        }
+      },
+      "description": "Operation exposed by an interface contract. OperationType is currently a string in the observed .sail files."
+    },
+    "Diagram": {
+      "type": "object",
+      "required": [
+        "$type",
+        "Type",
+        "Id",
+        "Name",
+        "Elements",
+        "Connectors"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "$type": {
+          "const": "Diagram"
+        },
+        "Type": {
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "x-enumNames": [
+            "StructuralContext",
+            "StructuralHierarchical",
+            "BehavioralContext",
+            "BehavioralInteraction",
+            "BehavioralProcess"
+          ],
+          "x-enumDescriptions": [
+            "Black-box structural boundary view: one subject system plus boundary participants and relationships.",
+            "Structural decomposition view showing internal systems, service units, datastores, and communication pathways.",
+            "Behavioral boundary/context view showing actors and high-level interactions.",
+            "Behavioral interaction view showing scenario participants and interaction relationships.",
+            "Behavioral process view showing ordered process steps, decisions, start/end, and responsible elements."
+          ],
+          "description": " Numeric enum. Interpret using x-enumNames or sail-codebook.json; do not infer meanings from the numbers alone."
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Elements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DiagramElement"
+          }
+        },
+        "Connectors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DiagramConnector"
+          }
+        }
+      },
+      "description": "General SAIL diagram for structural context, structural hierarchy, behavioral context, behavioral interaction, or behavioral process views."
+    },
+    "CharacteristicMapDiagram": {
+      "type": "object",
+      "required": [
+        "$type",
+        "ElementId",
+        "ShowElementDetails",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor",
+        "Type",
+        "Id",
+        "Name",
+        "Elements",
+        "Connectors"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "$type": {
+          "const": "CharMapDiagram"
+        },
+        "ElementId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "ShowElementDetails": {
+          "type": "boolean"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "Type": {
+          "const": 5,
+          "description": "DiagramType code 5: IntrinsicCharacteristicMap.",
+          "x-enumName": "IntrinsicCharacteristicMap"
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Elements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DiagramElement"
+          }
+        },
+        "Connectors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DiagramConnector"
+          }
+        }
+      }
+    },
+    "InterfaceDiagram": {
+      "type": "object",
+      "required": [
+        "$type",
+        "InterfaceId",
+        "MinContainerHeight",
+        "MinWidth",
+        "BorderColor",
+        "FontColor",
+        "BackgroundColor",
+        "HeaderBackgroundColor",
+        "HeaderFontColor",
+        "Interface",
+        "Type",
+        "Id",
+        "Name",
+        "Elements",
+        "Connectors"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "$type": {
+          "const": "InterfaceDiagram"
+        },
+        "InterfaceId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "MinContainerHeight": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "MinWidth": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "HeaderBackgroundColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "HeaderFontColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "Interface": {
+          "type": [
+            "null",
+            "object"
+          ]
+        },
+        "Type": {
+          "const": 6,
+          "description": "DiagramType code 6: Interface.",
+          "x-enumName": "Interface"
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Elements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DiagramElement"
+          }
+        },
+        "Connectors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DiagramConnector"
+          }
+        }
+      }
+    },
+    "Positioned": {
+      "type": "object",
+      "required": [
+        "Id",
+        "X",
+        "Y"
+      ],
+      "properties": {
+        "Id": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        }
+      }
+    },
+    "VisualBox": {
+      "type": "object",
+      "required": [
+        "Width",
+        "Height",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor"
+      ],
+      "properties": {
+        "Width": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "Height": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/Color"
+        }
+      }
+    },
+    "DiagramElement": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/DiagramStructuralElement"
+        },
+        {
+          "$ref": "#/$defs/DiagramInteraction"
+        },
+        {
+          "$ref": "#/$defs/DiagramCharacteristic"
+        },
+        {
+          "$ref": "#/$defs/DiagramProcessStep"
+        },
+        {
+          "$ref": "#/$defs/DiagramOperation"
+        },
+        {
+          "$ref": "#/$defs/DiagramContextGroup"
+        },
+        {
+          "$ref": "#/$defs/DiagramStart"
+        },
+        {
+          "$ref": "#/$defs/DiagramEnd"
+        },
+        {
+          "$ref": "#/$defs/DiagramNote"
+        }
+      ]
+    },
+    "DiagramStructuralElement": {
+      "type": "object",
+      "required": [
+        "$type",
+        "StructuralElementId",
+        "Width",
+        "Height",
+        "ShowDescription",
+        "ShowRefinement",
+        "ShowIdentifier",
+        "ShowSubDiagramMarker",
+        "ShowCharacteristicMapIndicator",
+        "ShowMultipleIndicator",
+        "Id",
+        "X",
+        "Y",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "$type": {
+          "const": "DiagramStructuralElement"
+        },
+        "StructuralElementId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "Width": {
+          "type": "integer"
+        },
+        "Height": {
+          "type": "integer"
+        },
+        "ShowDescription": {
+          "type": "boolean"
+        },
+        "ShowRefinement": {
+          "type": "boolean"
+        },
+        "ShowIdentifier": {
+          "type": "boolean"
+        },
+        "ShowSubDiagramMarker": {
+          "type": "boolean"
+        },
+        "ShowCharacteristicMapIndicator": {
+          "type": "boolean"
+        },
+        "ShowMultipleIndicator": {
+          "type": "boolean"
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/Color"
+        }
+      },
+      "description": "Diagram visual item of type DiagramStructuralElement. Diagram objects are visual views; resolve IDs back to Inventory for architectural semantics."
+    },
+    "DiagramInteraction": {
+      "type": "object",
+      "required": [
+        "$type",
+        "InteractionId",
+        "Width",
+        "ShowCharacteristicMapIndicator",
+        "Id",
+        "X",
+        "Y",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "$type": {
+          "const": "DiagramInteraction"
+        },
+        "InteractionId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "Width": {
+          "type": "integer"
+        },
+        "ShowCharacteristicMapIndicator": {
+          "type": "boolean"
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/Color"
+        }
+      },
+      "description": "Diagram visual item of type DiagramInteraction. Diagram objects are visual views; resolve IDs back to Inventory for architectural semantics."
+    },
+    "DiagramCharacteristic": {
+      "type": "object",
+      "required": [
+        "$type",
+        "StructuralElementId",
+        "CharacteristicCategoryId",
+        "Width",
+        "Height",
+        "Id",
+        "X",
+        "Y",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "$type": {
+          "const": "DiagramCharacteristic"
+        },
+        "StructuralElementId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "CharacteristicCategoryId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "Width": {
+          "type": "integer"
+        },
+        "Height": {
+          "type": "integer"
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/Color"
+        }
+      },
+      "description": "Diagram visual item of type DiagramCharacteristic. Diagram objects are visual views; resolve IDs back to Inventory for architectural semantics."
+    },
+    "DiagramProcessStep": {
+      "type": "object",
+      "required": [
+        "$type",
+        "StructuralElementId",
+        "StepDescription",
+        "Width",
+        "Height",
+        "Id",
+        "X",
+        "Y",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "$type": {
+          "const": "DiagramProcessStep"
+        },
+        "StructuralElementId": {
+          "$ref": "#/$defs/OptionalUuidString"
+        },
+        "StepDescription": {
+          "type": "string"
+        },
+        "Width": {
+          "type": "integer"
+        },
+        "Height": {
+          "type": "integer"
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/Color"
+        }
+      },
+      "description": "Diagram visual item of type DiagramProcessStep. Diagram objects are visual views; resolve IDs back to Inventory for architectural semantics."
+    },
+    "DiagramOperation": {
+      "type": "object",
+      "required": [
+        "$type",
+        "InterfaceId",
+        "OperationId",
+        "Width",
+        "Height",
+        "Id",
+        "X",
+        "Y",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "$type": {
+          "const": "DiagramOperation"
+        },
+        "InterfaceId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "OperationId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "Width": {
+          "type": "integer"
+        },
+        "Height": {
+          "type": "integer"
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/Color"
+        }
+      },
+      "description": "Diagram visual item of type DiagramOperation. Diagram objects are visual views; resolve IDs back to Inventory for architectural semantics."
+    },
+    "DiagramContextGroup": {
+      "type": "object",
+      "required": [
+        "$type",
+        "Label",
+        "ShowLabel",
+        "Width",
+        "Height",
+        "LineWidth",
+        "Id",
+        "X",
+        "Y",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "$type": {
+          "const": "DiagramContextGroup"
+        },
+        "Label": {
+          "type": "string"
+        },
+        "ShowLabel": {
+          "type": "boolean"
+        },
+        "Width": {
+          "type": "integer"
+        },
+        "Height": {
+          "type": "integer"
+        },
+        "LineWidth": {
+          "type": "integer"
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/Color"
+        }
+      },
+      "description": "Diagram visual item of type DiagramContextGroup. Diagram objects are visual views; resolve IDs back to Inventory for architectural semantics."
+    },
+    "DiagramStart": {
+      "type": "object",
+      "required": [
+        "$type",
+        "Label",
+        "Width",
+        "Height",
+        "Id",
+        "X",
+        "Y",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "$type": {
+          "const": "DiagramStart"
+        },
+        "Label": {
+          "type": "string"
+        },
+        "Width": {
+          "type": "integer"
+        },
+        "Height": {
+          "type": "integer"
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/Color"
+        }
+      },
+      "description": "Diagram visual item of type DiagramStart. Diagram objects are visual views; resolve IDs back to Inventory for architectural semantics."
+    },
+    "DiagramEnd": {
+      "type": "object",
+      "required": [
+        "$type",
+        "Label",
+        "Width",
+        "Height",
+        "Id",
+        "X",
+        "Y",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "$type": {
+          "const": "DiagramEnd"
+        },
+        "Label": {
+          "type": "string"
+        },
+        "Width": {
+          "type": "integer"
+        },
+        "Height": {
+          "type": "integer"
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/Color"
+        }
+      },
+      "description": "Diagram visual item of type DiagramEnd. Diagram objects are visual views; resolve IDs back to Inventory for architectural semantics."
+    },
+    "DiagramNote": {
+      "type": "object",
+      "required": [
+        "$type",
+        "Kind",
+        "Title",
+        "Text",
+        "Width",
+        "Height",
+        "LineWidth",
+        "Id",
+        "X",
+        "Y",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "$type": {
+          "const": "DiagramNote"
+        },
+        "Kind": {
+          "type": "string",
+          "enum": [
+            "Information",
+            "Concept",
+            "Annotation"
+          ]
+        },
+        "Title": {
+          "type": "string"
+        },
+        "Text": {
+          "type": "string"
+        },
+        "Width": {
+          "type": "integer"
+        },
+        "Height": {
+          "type": "integer"
+        },
+        "LineWidth": {
+          "type": "integer"
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/Color"
+        }
+      },
+      "description": "Diagram visual item of type DiagramNote. Diagram objects are visual views; resolve IDs back to Inventory for architectural semantics."
+    },
+    "DiagramConnector": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/DiagramCommunicationPathway"
+        },
+        {
+          "$ref": "#/$defs/DiagramBehavioralConnector"
+        }
+      ]
+    },
+    "DiagramCommunicationPathway": {
+      "type": "object",
+      "required": [
+        "$type",
+        "CommunicationPathwayId",
+        "SourceDiagramElementId",
+        "TargetDiagramElementId",
+        "SourceEdge",
+        "TargetEdge",
+        "SourceOffset",
+        "TargetOffset",
+        "Waypoints",
+        "ShowLabel",
+        "LabelX",
+        "LabelY",
+        "LabelWidth",
+        "LabelHeight",
+        "LabelBackgroundColor",
+        "LabelTextColor",
+        "LineColor",
+        "LineWidth",
+        "Id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "$type": {
+          "const": "DiagramCommunicationPathway"
+        },
+        "CommunicationPathwayId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "SourceDiagramElementId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "TargetDiagramElementId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "SourceEdge": {
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "description": "DiagramElementEdge enum value: 0=None, 1=Top, 2=Bottom, 3=Left, 4=Right. Defines the visual edge of the diagram element used by the connector."
+        },
+        "TargetEdge": {
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "description": "DiagramElementEdge enum value: 0=None, 1=Top, 2=Bottom, 3=Left, 4=Right. Defines the visual edge of the diagram element used by the connector."
+        },
+        "SourceOffset": {
+          "type": "integer"
+        },
+        "TargetOffset": {
+          "type": "integer"
+        },
+        "Waypoints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Point"
+          }
+        },
+        "ShowLabel": {
+          "type": "boolean"
+        },
+        "LabelX": {
+          "type": "integer"
+        },
+        "LabelY": {
+          "type": "integer"
+        },
+        "LabelWidth": {
+          "type": "integer"
+        },
+        "LabelHeight": {
+          "type": "integer"
+        },
+        "LabelBackgroundColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "LabelTextColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "LineColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "LineWidth": {
+          "type": "integer"
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid"
+        }
+      },
+      "description": "Diagram visual item of type DiagramCommunicationPathway. Diagram objects are visual views; resolve IDs back to Inventory for architectural semantics."
+    },
+    "DiagramBehavioralConnector": {
+      "type": "object",
+      "required": [
+        "$type",
+        "SourceId",
+        "TargetId",
+        "SourceDiagramElementId",
+        "TargetDiagramElementId",
+        "SourceEdge",
+        "TargetEdge",
+        "SourceOffset",
+        "TargetOffset",
+        "Waypoints",
+        "ShowLabel",
+        "Label",
+        "LabelX",
+        "LabelY",
+        "LabelBackgroundColor",
+        "LabelTextColor",
+        "LineColor",
+        "LineWidth",
+        "Id"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "$type": {
+          "const": "DiagramBehavioralConnector"
+        },
+        "SourceId": {
+          "type": "string"
+        },
+        "TargetId": {
+          "type": "string"
+        },
+        "SourceDiagramElementId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "TargetDiagramElementId": {
+          "$ref": "#/$defs/Uuid"
+        },
+        "SourceEdge": {
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "description": "DiagramElementEdge enum value: 0=None, 1=Top, 2=Bottom, 3=Left, 4=Right. Defines the visual edge of the diagram element used by the connector."
+        },
+        "TargetEdge": {
+          "type": "integer",
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "description": "DiagramElementEdge enum value: 0=None, 1=Top, 2=Bottom, 3=Left, 4=Right. Defines the visual edge of the diagram element used by the connector."
+        },
+        "SourceOffset": {
+          "type": "integer"
+        },
+        "TargetOffset": {
+          "type": "integer"
+        },
+        "Waypoints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Point"
+          }
+        },
+        "ShowLabel": {
+          "type": "boolean"
+        },
+        "Label": {
+          "type": "string"
+        },
+        "LabelX": {
+          "type": "integer"
+        },
+        "LabelY": {
+          "type": "integer"
+        },
+        "LabelBackgroundColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "LabelTextColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "LineColor": {
+          "$ref": "#/$defs/Color"
+        },
+        "LineWidth": {
+          "type": "integer"
+        },
+        "Id": {
+          "$ref": "#/$defs/Uuid"
+        }
+      },
+      "description": "Diagram visual item of type DiagramBehavioralConnector. Diagram objects are visual views; resolve IDs back to Inventory for architectural semantics."
+    },
+    "Notebook": {
+      "type": "object",
+      "required": [
+        "Decisions",
+        "Todos",
+        "Assumptions",
+        "Risks",
+        "Journal",
+        "References",
+        "Stakeholders"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "Decisions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Permissive Decisions notebook item. Use the codebook for any enum fields found here."
+          },
+          "description": "Decisions notebook entries. Item schemas are permissive until populated examples are available."
+        },
+        "Todos": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Permissive Todos notebook item. Use the codebook for any enum fields found here."
+          },
+          "description": "Todos notebook entries. Item schemas are permissive until populated examples are available."
+        },
+        "Assumptions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Permissive Assumptions notebook item. Use the codebook for any enum fields found here."
+          },
+          "description": "Assumptions notebook entries. Item schemas are permissive until populated examples are available."
+        },
+        "Risks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Permissive Risks notebook item. Use the codebook for any enum fields found here."
+          },
+          "description": "Risks notebook entries. Item schemas are permissive until populated examples are available."
+        },
+        "Journal": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Permissive Journal notebook item. Use the codebook for any enum fields found here."
+          },
+          "description": "Journal notebook entries. Item schemas are permissive until populated examples are available."
+        },
+        "References": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Permissive References notebook item. Use the codebook for any enum fields found here."
+          },
+          "description": "References notebook entries. Item schemas are permissive until populated examples are available."
+        },
+        "Stakeholders": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "description": "Permissive Stakeholders notebook item. Use the codebook for any enum fields found here."
+          },
+          "description": "Stakeholders notebook entries. Item schemas are permissive until populated examples are available."
+        }
+      },
+      "description": "Supplemental architecture notebook. Example files had empty arrays, so item shapes remain intentionally permissive while enum code meanings are supplied in the codebook."
+    },
+    "StructuralElementType": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "x-enumNames": [
+        "BoundaryParticipant",
+        "System",
+        "Datastore",
+        "ServiceUnit"
+      ],
+      "description": "SAIL structural element type numeric enum."
+    },
+    "InteractionKind": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "x-enumNames": [
+        "Simple",
+        "Composite",
+        "Process"
+      ],
+      "description": "SAIL interaction kind numeric enum."
+    },
+    "DiagramType": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "x-enumNames": [
+        "StructuralContext",
+        "StructuralHierarchical",
+        "BehavioralContext",
+        "BehavioralInteraction",
+        "BehavioralProcess",
+        "IntrinsicCharacteristicMap",
+        "Interface"
+      ],
+      "description": "SAIL diagram type numeric enum."
+    },
+    "AssumptionType": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "x-enumNames": [
+        "Technical",
+        "Business",
+        "Resource",
+        "Schedule",
+        "Other"
+      ],
+      "description": "AssumptionType numeric enum provided from SAIL/Xebec source definitions."
+    },
+    "DecisionStatus": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "x-enumNames": [
+        "Proposed",
+        "Approved",
+        "Rejected",
+        "Deferred",
+        "Implemented"
+      ],
+      "description": "DecisionStatus numeric enum provided from SAIL/Xebec source definitions."
+    },
+    "ReferenceType": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "x-enumNames": [
+        "Standard",
+        "External",
+        "Internal",
+        "Documentation",
+        "Other"
+      ],
+      "description": "ReferenceType numeric enum provided from SAIL/Xebec source definitions."
+    },
+    "RiskImpact": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "x-enumNames": [
+        "Low",
+        "Medium",
+        "High",
+        "Critical"
+      ],
+      "description": "RiskImpact numeric enum provided from SAIL/Xebec source definitions."
+    },
+    "RiskStatus": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "x-enumNames": [
+        "Active",
+        "Mitigated",
+        "Accepted",
+        "Closed"
+      ],
+      "description": "RiskStatus numeric enum provided from SAIL/Xebec source definitions."
+    },
+    "TodoStatus": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "x-enumNames": [
+        "Open",
+        "InProgress",
+        "Completed",
+        "OnHold",
+        "Cancelled"
+      ],
+      "description": "TodoStatus numeric enum provided from SAIL/Xebec source definitions."
+    },
+    "TodoPriority": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "x-enumNames": [
+        "Low",
+        "Medium",
+        "High",
+        "Critical"
+      ],
+      "description": "TodoPriority numeric enum provided from SAIL/Xebec source definitions."
+    }
+  },
+  "x-codebookFile": "sail-codebook.json",
+  "x-generatedFromExamples": [
+    "GridGuard.sail"
+  ],
+  "x-notes": [
+    "The canonical .sail JSON does not need to change for AI-agent use.",
+    "AI agents should use the schema for structure and the codebook for enum semantics.",
+    "JSON Schema validates shape and value domains; it does not fully validate cross-reference integrity."
+  ]
+}
