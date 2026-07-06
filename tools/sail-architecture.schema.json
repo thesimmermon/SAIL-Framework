@@ -1,0 +1,1987 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://getsail.org/schemas/sail-architecture.schema.json",
+  "title": "SAIL Architecture (.sail) JSON Schema",
+  "description": "JSON Schema for Xebec/SAIL .sail files generated from the provided SailArchitecture C# data repository and example .sail file. Enums are serialized as integers by System.Text.Json in the current repository.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "SuppressChangeNotifications",
+    "Name",
+    "Inventory",
+    "StructuralContextDiagram",
+    "HierarchicalDiagrams",
+    "BehavioralContextDiagram",
+    "InteractionDiagrams",
+    "CharacteristicMapDiagrams",
+    "InterfaceDiagrams",
+    "Notebook"
+  ],
+  "properties": {
+    "SuppressChangeNotifications": {
+      "type": "boolean"
+    },
+    "Name": {
+      "type": "string"
+    },
+    "Inventory": {
+      "$ref": "#/$defs/Inventory"
+    },
+    "StructuralContextDiagram": {
+      "$ref": "#/$defs/DiagramPolymorphic"
+    },
+    "HierarchicalDiagrams": {
+      "$ref": "#/$defs/DiagramDictionary"
+    },
+    "BehavioralContextDiagram": {
+      "$ref": "#/$defs/DiagramPolymorphic"
+    },
+    "InteractionDiagrams": {
+      "$ref": "#/$defs/DiagramDictionary"
+    },
+    "CharacteristicMapDiagrams": {
+      "$ref": "#/$defs/DiagramDictionary"
+    },
+    "InterfaceDiagrams": {
+      "$ref": "#/$defs/DiagramDictionary"
+    },
+    "Notebook": {
+      "$ref": "#/$defs/ArchitectureNotebookData"
+    }
+  },
+  "$defs": {
+    "IdString": {
+      "type": "string",
+      "minLength": 1,
+      "description": "SAIL/Xebec identifier. Usually a GUID string."
+    },
+    "GuidString": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "ColorString": {
+      "type": "string",
+      "pattern": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$"
+    },
+    "DateTimeString": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "NullableDateTimeString": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DateTimeString"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "StructuralElementType": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "x-enumNames": [
+        "BoundaryParticipant",
+        "System",
+        "Datastore",
+        "ServiceUnit"
+      ]
+    },
+    "InteractionKind": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2
+      ],
+      "x-enumNames": [
+        "Simple",
+        "Composite",
+        "Process"
+      ]
+    },
+    "DiagramType": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "x-enumNames": [
+        "StructuralContext",
+        "StructuralHierarchical",
+        "BehavioralContext",
+        "BehavioralInteraction",
+        "BehavioralProcess",
+        "IntrinsicCharacteristicMap",
+        "Interface"
+      ]
+    },
+    "DiagramElementEdge": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "x-enumNames": [
+        "None",
+        "Top",
+        "Bottom",
+        "Left",
+        "Right"
+      ]
+    },
+    "DecisionStatus": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "x-enumNames": [
+        "Proposed",
+        "Approved",
+        "Rejected",
+        "Deferred",
+        "Implemented"
+      ]
+    },
+    "TodoStatus": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "x-enumNames": [
+        "Open",
+        "InProgress",
+        "Completed",
+        "OnHold",
+        "Cancelled"
+      ]
+    },
+    "TodoPriority": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "x-enumNames": [
+        "Low",
+        "Medium",
+        "High",
+        "Critical"
+      ]
+    },
+    "AssumptionType": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "x-enumNames": [
+        "Technical",
+        "Business",
+        "Resource",
+        "Schedule",
+        "Other"
+      ]
+    },
+    "RiskImpact": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "x-enumNames": [
+        "Low",
+        "Medium",
+        "High",
+        "Critical"
+      ]
+    },
+    "RiskStatus": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "x-enumNames": [
+        "Active",
+        "Mitigated",
+        "Accepted",
+        "Closed"
+      ]
+    },
+    "ReferenceType": {
+      "type": "integer",
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "x-enumNames": [
+        "Standard",
+        "External",
+        "Internal",
+        "Documentation",
+        "Other"
+      ]
+    },
+    "InventoryItemBase": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "Id"
+      ]
+    },
+    "Characteristic": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "Characteristics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Characteristic"
+          }
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "Name",
+        "Characteristics",
+        "Id"
+      ]
+    },
+    "CharacteristicCategory": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "Characteristics": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Characteristic"
+          }
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "Name",
+        "Characteristics",
+        "Id"
+      ]
+    },
+    "CharacteristicMapDictionary": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/CharacteristicCategory"
+      }
+    },
+    "StructuralElement": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "ElementType": {
+          "$ref": "#/$defs/StructuralElementType"
+        },
+        "SubType": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "Refinement": {
+          "type": "string"
+        },
+        "Identifier": {
+          "type": "string"
+        },
+        "IsAbstract": {
+          "type": "boolean"
+        },
+        "IsMultipleInstances": {
+          "type": "boolean"
+        },
+        "IsStandIn": {
+          "type": "boolean"
+        },
+        "RepresentedElementIds": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/IdString"
+          }
+        },
+        "SubDiagramId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "CharMapDiagramId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "CharacteristicMap": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CharacteristicMapDictionary"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "Name",
+        "ElementType",
+        "SubType",
+        "Description",
+        "Refinement",
+        "Identifier",
+        "IsAbstract",
+        "IsMultipleInstances",
+        "IsStandIn",
+        "RepresentedElementIds",
+        "SubDiagramId",
+        "CharMapDiagramId",
+        "CharacteristicMap",
+        "Id"
+      ]
+    },
+    "Interaction": {
+      "type": "object",
+      "properties": {
+        "Kind": {
+          "$ref": "#/$defs/InteractionKind"
+        },
+        "Label": {
+          "type": "string"
+        },
+        "SubDiagramId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "CharMapDiagramId": {
+          "type": "string"
+        },
+        "CharacteristicMap": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CharacteristicMapDictionary"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "Kind",
+        "Label",
+        "SubDiagramId",
+        "CharMapDiagramId",
+        "CharacteristicMap",
+        "Id"
+      ]
+    },
+    "InterfaceOperation": {
+      "type": "object",
+      "properties": {
+        "OwnerId": {
+          "type": "string"
+        },
+        "OperationType": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "OwnerId",
+        "OperationType",
+        "Name",
+        "Description",
+        "Id"
+      ]
+    },
+    "InterfaceOperationDictionary": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/InterfaceOperation"
+      }
+    },
+    "Interface": {
+      "type": "object",
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "Version": {
+          "type": "string"
+        },
+        "DocumentationLocation": {
+          "type": "string"
+        },
+        "Operations": {
+          "$ref": "#/$defs/InterfaceOperationDictionary"
+        },
+        "InterfaceDiagramId": {
+          "type": "string"
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "Name",
+        "Description",
+        "Version",
+        "DocumentationLocation",
+        "Operations",
+        "InterfaceDiagramId",
+        "Id"
+      ]
+    },
+    "CommunicationPathway": {
+      "type": "object",
+      "properties": {
+        "SourceId": {
+          "type": "string"
+        },
+        "TargetId": {
+          "type": "string"
+        },
+        "InterfaceId": {
+          "type": "string"
+        },
+        "InterfaceOperationId": {
+          "type": "string"
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "SourceId",
+        "TargetId",
+        "InterfaceId",
+        "InterfaceOperationId",
+        "Id"
+      ]
+    },
+    "Inventory": {
+      "type": "object",
+      "properties": {
+        "StructuralElements": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/StructuralElement"
+          }
+        },
+        "Interactions": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/Interaction"
+          }
+        },
+        "CommunicationPathways": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/CommunicationPathway"
+          }
+        },
+        "Interfaces": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/Interface"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "StructuralElements",
+        "Interactions",
+        "CommunicationPathways",
+        "Interfaces"
+      ]
+    },
+    "NotebookEntryBase": {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "$ref": "#/$defs/GuidString"
+        },
+        "Created": {
+          "$ref": "#/$defs/DateTimeString"
+        },
+        "Modified": {
+          "$ref": "#/$defs/DateTimeString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "Id",
+        "Created",
+        "Modified"
+      ]
+    },
+    "DecisionEntry": {
+      "type": "object",
+      "properties": {
+        "Rationale": {
+          "type": "string"
+        },
+        "DecidedBy": {
+          "type": "string"
+        },
+        "DecisionDate": {
+          "$ref": "#/$defs/DateTimeString"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "Status": {
+          "$ref": "#/$defs/DecisionStatus"
+        },
+        "Id": {
+          "$ref": "#/$defs/GuidString"
+        },
+        "Created": {
+          "$ref": "#/$defs/DateTimeString"
+        },
+        "Modified": {
+          "$ref": "#/$defs/DateTimeString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "Rationale",
+        "DecidedBy",
+        "DecisionDate",
+        "Title",
+        "Description",
+        "Status",
+        "Id",
+        "Created",
+        "Modified"
+      ]
+    },
+    "TodoEntry": {
+      "type": "object",
+      "properties": {
+        "Title": {
+          "type": "string"
+        },
+        "Notes": {
+          "type": "string"
+        },
+        "CompletedDate": {
+          "$ref": "#/$defs/NullableDateTimeString"
+        },
+        "Status": {
+          "$ref": "#/$defs/TodoStatus"
+        },
+        "Priority": {
+          "$ref": "#/$defs/TodoPriority"
+        },
+        "DueDate": {
+          "$ref": "#/$defs/NullableDateTimeString"
+        },
+        "Id": {
+          "$ref": "#/$defs/GuidString"
+        },
+        "Created": {
+          "$ref": "#/$defs/DateTimeString"
+        },
+        "Modified": {
+          "$ref": "#/$defs/DateTimeString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "Title",
+        "Notes",
+        "CompletedDate",
+        "Status",
+        "Priority",
+        "DueDate",
+        "Id",
+        "Created",
+        "Modified"
+      ]
+    },
+    "AssumptionEntry": {
+      "type": "object",
+      "properties": {
+        "Description": {
+          "type": "string"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "Type": {
+          "$ref": "#/$defs/AssumptionType"
+        },
+        "Id": {
+          "$ref": "#/$defs/GuidString"
+        },
+        "Created": {
+          "$ref": "#/$defs/DateTimeString"
+        },
+        "Modified": {
+          "$ref": "#/$defs/DateTimeString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "Description",
+        "Title",
+        "Type",
+        "Id",
+        "Created",
+        "Modified"
+      ]
+    },
+    "RiskEntry": {
+      "type": "object",
+      "properties": {
+        "MitigationPlan": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "Impact": {
+          "$ref": "#/$defs/RiskImpact"
+        },
+        "Status": {
+          "$ref": "#/$defs/RiskStatus"
+        },
+        "Id": {
+          "$ref": "#/$defs/GuidString"
+        },
+        "Created": {
+          "$ref": "#/$defs/DateTimeString"
+        },
+        "Modified": {
+          "$ref": "#/$defs/DateTimeString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "MitigationPlan",
+        "Description",
+        "Title",
+        "Impact",
+        "Status",
+        "Id",
+        "Created",
+        "Modified"
+      ]
+    },
+    "JournalEntry": {
+      "type": "object",
+      "properties": {
+        "LengthInMinutes": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "MeetingMinutes": {
+          "type": "string"
+        },
+        "Agenda": {
+          "type": "string"
+        },
+        "Location": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "MeetingDate": {
+          "$ref": "#/$defs/DateTimeString"
+        },
+        "Attendees": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "Id": {
+          "$ref": "#/$defs/GuidString"
+        },
+        "Created": {
+          "$ref": "#/$defs/DateTimeString"
+        },
+        "Modified": {
+          "$ref": "#/$defs/DateTimeString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "LengthInMinutes",
+        "MeetingMinutes",
+        "Agenda",
+        "Location",
+        "Description",
+        "Title",
+        "MeetingDate",
+        "Attendees",
+        "Id",
+        "Created",
+        "Modified"
+      ]
+    },
+    "ReferenceEntry": {
+      "type": "object",
+      "properties": {
+        "Description": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Locator": {
+          "type": "string"
+        },
+        "ReferenceType": {
+          "$ref": "#/$defs/ReferenceType"
+        },
+        "Id": {
+          "$ref": "#/$defs/GuidString"
+        },
+        "Created": {
+          "$ref": "#/$defs/DateTimeString"
+        },
+        "Modified": {
+          "$ref": "#/$defs/DateTimeString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "Description",
+        "Name",
+        "Locator",
+        "ReferenceType",
+        "Id",
+        "Created",
+        "Modified"
+      ]
+    },
+    "StakeholderEntry": {
+      "type": "object",
+      "properties": {
+        "Role": {
+          "type": "string"
+        },
+        "ContactInfo": {
+          "type": "string"
+        },
+        "Organization": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Concerns": {
+          "type": "string"
+        },
+        "Id": {
+          "$ref": "#/$defs/GuidString"
+        },
+        "Created": {
+          "$ref": "#/$defs/DateTimeString"
+        },
+        "Modified": {
+          "$ref": "#/$defs/DateTimeString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "Role",
+        "ContactInfo",
+        "Organization",
+        "Name",
+        "Concerns",
+        "Id",
+        "Created",
+        "Modified"
+      ]
+    },
+    "ArchitectureNotebookData": {
+      "type": "object",
+      "properties": {
+        "Decisions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DecisionEntry"
+          }
+        },
+        "Todos": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/TodoEntry"
+          }
+        },
+        "Assumptions": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/AssumptionEntry"
+          }
+        },
+        "Risks": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RiskEntry"
+          }
+        },
+        "Journal": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/JournalEntry"
+          }
+        },
+        "References": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/ReferenceEntry"
+          }
+        },
+        "Stakeholders": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/StakeholderEntry"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "Decisions",
+        "Todos",
+        "Assumptions",
+        "Risks",
+        "Journal",
+        "References",
+        "Stakeholders"
+      ]
+    },
+    "Waypoint": {
+      "type": "object",
+      "properties": {
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "X",
+        "Y"
+      ]
+    },
+    "DiagramStructuralElement": {
+      "type": "object",
+      "properties": {
+        "$type": {
+          "const": "DiagramStructuralElement"
+        },
+        "StructuralElementId": {
+          "type": "string"
+        },
+        "Width": {
+          "type": "integer"
+        },
+        "Height": {
+          "type": "integer"
+        },
+        "ShowDescription": {
+          "type": "boolean"
+        },
+        "ShowRefinement": {
+          "type": "boolean"
+        },
+        "ShowIdentifier": {
+          "type": "boolean"
+        },
+        "ShowMultipleIndicator": {
+          "type": "boolean"
+        },
+        "ShowSubDiagramMarker": {
+          "type": "boolean"
+        },
+        "ShowCharacteristicMapIndicator": {
+          "type": "boolean"
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        },
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/ColorString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "$type",
+        "StructuralElementId",
+        "Width",
+        "Height",
+        "ShowDescription",
+        "ShowRefinement",
+        "ShowIdentifier",
+        "ShowMultipleIndicator",
+        "ShowSubDiagramMarker",
+        "ShowCharacteristicMapIndicator",
+        "Id",
+        "X",
+        "Y",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor"
+      ]
+    },
+    "DiagramContextGroup": {
+      "type": "object",
+      "properties": {
+        "$type": {
+          "const": "DiagramContextGroup"
+        },
+        "Label": {
+          "type": "string"
+        },
+        "ShowLabel": {
+          "type": "boolean"
+        },
+        "Width": {
+          "type": "integer"
+        },
+        "Height": {
+          "type": "integer"
+        },
+        "LineWidth": {
+          "type": "integer"
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        },
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/ColorString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "$type",
+        "Label",
+        "ShowLabel",
+        "Width",
+        "Height",
+        "LineWidth",
+        "Id",
+        "X",
+        "Y",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor"
+      ]
+    },
+    "DiagramCharacteristicCategory": {
+      "type": "object",
+      "properties": {
+        "$type": {
+          "const": "DiagramCharacteristic"
+        },
+        "StructuralElementId": {
+          "type": "string"
+        },
+        "CharacteristicCategoryId": {
+          "type": "string"
+        },
+        "Width": {
+          "type": "integer"
+        },
+        "Height": {
+          "type": "integer"
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        },
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/ColorString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "$type",
+        "StructuralElementId",
+        "CharacteristicCategoryId",
+        "Width",
+        "Height",
+        "Id",
+        "X",
+        "Y",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor"
+      ]
+    },
+    "DiagramInteraction": {
+      "type": "object",
+      "properties": {
+        "$type": {
+          "const": "DiagramInteraction"
+        },
+        "InteractionId": {
+          "type": "string"
+        },
+        "Width": {
+          "type": "integer"
+        },
+        "ShowCharacteristicMapIndicator": {
+          "type": "boolean"
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        },
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/ColorString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "$type",
+        "InteractionId",
+        "Width",
+        "ShowCharacteristicMapIndicator",
+        "Id",
+        "X",
+        "Y",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor"
+      ]
+    },
+    "DiagramPathwayLabel": {
+      "type": "object",
+      "properties": {
+        "$type": {
+          "const": "DiagramPathwayLabel"
+        },
+        "CommunicationPathwayId": {
+          "type": "string"
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        },
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/ColorString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "$type",
+        "CommunicationPathwayId",
+        "Id",
+        "X",
+        "Y",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor"
+      ]
+    },
+    "DiagramEnd": {
+      "type": "object",
+      "properties": {
+        "$type": {
+          "const": "DiagramEnd"
+        },
+        "Label": {
+          "type": "string"
+        },
+        "Width": {
+          "type": "integer"
+        },
+        "Height": {
+          "type": "integer"
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        },
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/ColorString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "$type",
+        "Label",
+        "Width",
+        "Height",
+        "Id",
+        "X",
+        "Y",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor"
+      ]
+    },
+    "DiagramStart": {
+      "type": "object",
+      "properties": {
+        "$type": {
+          "const": "DiagramStart"
+        },
+        "Label": {
+          "type": "string"
+        },
+        "Width": {
+          "type": "integer"
+        },
+        "Height": {
+          "type": "integer"
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        },
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/ColorString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "$type",
+        "Label",
+        "Width",
+        "Height",
+        "Id",
+        "X",
+        "Y",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor"
+      ]
+    },
+    "DiagramProcessStep": {
+      "type": "object",
+      "properties": {
+        "$type": {
+          "const": "DiagramProcessStep"
+        },
+        "StructuralElementId": {
+          "type": "string"
+        },
+        "Width": {
+          "type": "integer"
+        },
+        "Height": {
+          "type": "integer"
+        },
+        "StepDescription": {
+          "type": "string"
+        },
+        "SubDiagramId": {
+          "type": "string"
+        },
+        "ShowSubDiagramMarker": {
+          "type": "boolean"
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        },
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/ColorString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "$type",
+        "StructuralElementId",
+        "Width",
+        "Height",
+        "StepDescription",
+        "SubDiagramId",
+        "ShowSubDiagramMarker",
+        "Id",
+        "X",
+        "Y",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor"
+      ]
+    },
+    "DiagramNote": {
+      "type": "object",
+      "properties": {
+        "$type": {
+          "const": "DiagramNote"
+        },
+        "Kind": {
+          "type": "string"
+        },
+        "Title": {
+          "type": "string"
+        },
+        "Text": {
+          "type": "string"
+        },
+        "Width": {
+          "type": "integer"
+        },
+        "Height": {
+          "type": "integer"
+        },
+        "LineWidth": {
+          "type": "integer"
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        },
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/ColorString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "$type",
+        "Kind",
+        "Title",
+        "Text",
+        "Width",
+        "Height",
+        "LineWidth",
+        "Id",
+        "X",
+        "Y",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor"
+      ]
+    },
+    "DiagramOperation": {
+      "type": "object",
+      "properties": {
+        "$type": {
+          "const": "DiagramOperation"
+        },
+        "InterfaceId": {
+          "type": "string"
+        },
+        "Width": {
+          "type": "integer"
+        },
+        "Height": {
+          "type": "integer"
+        },
+        "OperationId": {
+          "type": "string"
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        },
+        "X": {
+          "type": "integer"
+        },
+        "Y": {
+          "type": "integer"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/ColorString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "$type",
+        "InterfaceId",
+        "Width",
+        "Height",
+        "OperationId",
+        "Id",
+        "X",
+        "Y",
+        "BackgroundColor",
+        "BorderColor",
+        "FontColor"
+      ]
+    },
+    "DiagramElementBase": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/DiagramStructuralElement"
+        },
+        {
+          "$ref": "#/$defs/DiagramContextGroup"
+        },
+        {
+          "$ref": "#/$defs/DiagramCharacteristicCategory"
+        },
+        {
+          "$ref": "#/$defs/DiagramInteraction"
+        },
+        {
+          "$ref": "#/$defs/DiagramPathwayLabel"
+        },
+        {
+          "$ref": "#/$defs/DiagramEnd"
+        },
+        {
+          "$ref": "#/$defs/DiagramStart"
+        },
+        {
+          "$ref": "#/$defs/DiagramProcessStep"
+        },
+        {
+          "$ref": "#/$defs/DiagramNote"
+        },
+        {
+          "$ref": "#/$defs/DiagramOperation"
+        }
+      ]
+    },
+    "DiagramConnectorBase": {
+      "type": "object",
+      "properties": {
+        "$type": {
+          "const": "DiagramConnector"
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        },
+        "SourceDiagramElementId": {
+          "type": "string"
+        },
+        "TargetDiagramElementId": {
+          "type": "string"
+        },
+        "SourceEdge": {
+          "$ref": "#/$defs/DiagramElementEdge"
+        },
+        "SourceOffset": {
+          "type": "integer"
+        },
+        "TargetOffset": {
+          "type": "integer"
+        },
+        "TargetEdge": {
+          "$ref": "#/$defs/DiagramElementEdge"
+        },
+        "Waypoints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Waypoint"
+          }
+        },
+        "LineColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "LineWidth": {
+          "type": "integer"
+        },
+        "ShowLabel": {
+          "type": "boolean"
+        },
+        "LabelBackgroundColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "LabelTextColor": {
+          "$ref": "#/$defs/ColorString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "$type",
+        "Id",
+        "SourceDiagramElementId",
+        "TargetDiagramElementId",
+        "SourceEdge",
+        "SourceOffset",
+        "TargetOffset",
+        "TargetEdge",
+        "Waypoints",
+        "LineColor",
+        "LineWidth",
+        "ShowLabel",
+        "LabelBackgroundColor",
+        "LabelTextColor"
+      ]
+    },
+    "DiagramBehavioralConnector": {
+      "type": "object",
+      "properties": {
+        "$type": {
+          "const": "DiagramBehavioralConnector"
+        },
+        "SourceId": {
+          "type": "string"
+        },
+        "TargetId": {
+          "type": "string"
+        },
+        "Label": {
+          "type": "string"
+        },
+        "LabelX": {
+          "type": "integer"
+        },
+        "LabelY": {
+          "type": "integer"
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        },
+        "SourceDiagramElementId": {
+          "type": "string"
+        },
+        "TargetDiagramElementId": {
+          "type": "string"
+        },
+        "SourceEdge": {
+          "$ref": "#/$defs/DiagramElementEdge"
+        },
+        "SourceOffset": {
+          "type": "integer"
+        },
+        "TargetOffset": {
+          "type": "integer"
+        },
+        "TargetEdge": {
+          "$ref": "#/$defs/DiagramElementEdge"
+        },
+        "Waypoints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Waypoint"
+          }
+        },
+        "LineColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "LineWidth": {
+          "type": "integer"
+        },
+        "ShowLabel": {
+          "type": "boolean"
+        },
+        "LabelBackgroundColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "LabelTextColor": {
+          "$ref": "#/$defs/ColorString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "$type",
+        "SourceId",
+        "TargetId",
+        "Label",
+        "LabelX",
+        "LabelY",
+        "Id",
+        "SourceDiagramElementId",
+        "TargetDiagramElementId",
+        "SourceEdge",
+        "SourceOffset",
+        "TargetOffset",
+        "TargetEdge",
+        "Waypoints",
+        "LineColor",
+        "LineWidth",
+        "ShowLabel",
+        "LabelBackgroundColor",
+        "LabelTextColor"
+      ]
+    },
+    "DiagramCommunicationPathway": {
+      "type": "object",
+      "properties": {
+        "$type": {
+          "const": "DiagramCommunicationPathway"
+        },
+        "CommunicationPathwayId": {
+          "type": "string"
+        },
+        "LabelX": {
+          "type": "integer"
+        },
+        "LabelY": {
+          "type": "integer"
+        },
+        "LabelWidth": {
+          "type": "integer"
+        },
+        "LabelHeight": {
+          "type": "integer"
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        },
+        "SourceDiagramElementId": {
+          "type": "string"
+        },
+        "TargetDiagramElementId": {
+          "type": "string"
+        },
+        "SourceEdge": {
+          "$ref": "#/$defs/DiagramElementEdge"
+        },
+        "SourceOffset": {
+          "type": "integer"
+        },
+        "TargetOffset": {
+          "type": "integer"
+        },
+        "TargetEdge": {
+          "$ref": "#/$defs/DiagramElementEdge"
+        },
+        "Waypoints": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/Waypoint"
+          }
+        },
+        "LineColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "LineWidth": {
+          "type": "integer"
+        },
+        "ShowLabel": {
+          "type": "boolean"
+        },
+        "LabelBackgroundColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "LabelTextColor": {
+          "$ref": "#/$defs/ColorString"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "$type",
+        "CommunicationPathwayId",
+        "LabelX",
+        "LabelY",
+        "LabelWidth",
+        "LabelHeight",
+        "Id",
+        "SourceDiagramElementId",
+        "TargetDiagramElementId",
+        "SourceEdge",
+        "SourceOffset",
+        "TargetOffset",
+        "TargetEdge",
+        "Waypoints",
+        "LineColor",
+        "LineWidth",
+        "ShowLabel",
+        "LabelBackgroundColor",
+        "LabelTextColor"
+      ]
+    },
+    "DiagramConnector": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/DiagramConnectorBase"
+        },
+        {
+          "$ref": "#/$defs/DiagramBehavioralConnector"
+        },
+        {
+          "$ref": "#/$defs/DiagramCommunicationPathway"
+        }
+      ]
+    },
+    "Diagram": {
+      "type": "object",
+      "properties": {
+        "$type": {
+          "const": "Diagram"
+        },
+        "Type": {
+          "$ref": "#/$defs/DiagramType"
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Elements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DiagramElementBase"
+          }
+        },
+        "Connectors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DiagramConnector"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "$type",
+        "Type",
+        "Id",
+        "Name",
+        "Elements",
+        "Connectors"
+      ]
+    },
+    "CharMapDiagram": {
+      "type": "object",
+      "properties": {
+        "$type": {
+          "const": "CharMapDiagram"
+        },
+        "ElementId": {
+          "type": "string"
+        },
+        "ShowElementDetails": {
+          "type": "boolean"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "Type": {
+          "$ref": "#/$defs/DiagramType"
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Elements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DiagramElementBase"
+          }
+        },
+        "Connectors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DiagramConnector"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "$type",
+        "ElementId",
+        "ShowElementDetails",
+        "BorderColor",
+        "FontColor",
+        "BackgroundColor",
+        "Type",
+        "Id",
+        "Name",
+        "Elements",
+        "Connectors"
+      ]
+    },
+    "InterfaceDiagram": {
+      "type": "object",
+      "properties": {
+        "$type": {
+          "const": "InterfaceDiagram"
+        },
+        "InterfaceId": {
+          "type": "string"
+        },
+        "MinContainerHeight": {
+          "type": "integer"
+        },
+        "MinWidth": {
+          "type": "integer"
+        },
+        "BorderColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "FontColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "BackgroundColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "HeaderBackgroundColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "HeaderFontColor": {
+          "$ref": "#/$defs/ColorString"
+        },
+        "Interface": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Interface"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "Type": {
+          "$ref": "#/$defs/DiagramType"
+        },
+        "Id": {
+          "$ref": "#/$defs/IdString"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Elements": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DiagramElementBase"
+          }
+        },
+        "Connectors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/DiagramConnector"
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "$type",
+        "InterfaceId",
+        "MinContainerHeight",
+        "MinWidth",
+        "BorderColor",
+        "FontColor",
+        "BackgroundColor",
+        "HeaderBackgroundColor",
+        "HeaderFontColor",
+        "Interface",
+        "Type",
+        "Id",
+        "Name",
+        "Elements",
+        "Connectors"
+      ]
+    },
+    "DiagramPolymorphic": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/Diagram"
+        },
+        {
+          "$ref": "#/$defs/CharMapDiagram"
+        },
+        {
+          "$ref": "#/$defs/InterfaceDiagram"
+        }
+      ]
+    },
+    "DiagramDictionary": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/DiagramPolymorphic"
+      }
+    }
+  }
+}

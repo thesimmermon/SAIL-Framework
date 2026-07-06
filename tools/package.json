@@ -1,0 +1,13 @@
+{
+  "name": "sail-schema-validator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Simple CLI validator for Xebec/SAIL .sail files using JSON Schema.",
+  "scripts": {
+    "validate": "node validate-sail.mjs"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1"
+  }
+}
