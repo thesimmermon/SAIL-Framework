@@ -50,7 +50,7 @@ To fully understand the theory, iconographic design, and executive strategy behi
 **Jim Simmermon** is a Principal System Architect and hands-on engineering leader based in the Netherlands with over 30 years of experience. He specializes in distributed systems, cloud modernization, and bridging the gap between executive technology strategy and production-level execution.
 
 * [LinkedIn Profile](https://www.linkedin.com/in/simmermon)
-* [Email: jim.simmermon@outlook.com](https://www.google.com/search?q=mailto%3Ajim.simmermon%40outlook.com)
+* [Email: jim@thesimmermon.com](mailto%3Ajim%40thesimmermon.com)
 
 ---
 
