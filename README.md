@@ -11,34 +11,40 @@ Software architecture often fails because it devolves into "shelfware"—vague d
 SAIL was created to bridge this gap. It provides a framework that is visually clear for humans to understand, yet structured and explicit enough for AI agents to follow without hallucinating.
 
 ## 🏗️ Repository Contents
-This repository contains the official SAIL specification, validation tools, and AI guardrail templates[cite: 9].
+This repository contains the official SAIL specification, validation tools, and AI guardrail templates.
 
 ### 1. The Xebec Designer
 This repository includes the Xebec designer, the visual and iconographic modeling tool used to construct and map SAIL architectures for human comprehension before they are parsed into machine-readable formats.
 
 ### 2. Core Schemas (`/schema`)
-The foundational JSON schemas defining the SAIL framework[cite: 9]:
-*   `sail.schema.json`[cite: 9]: The primary schema defining boundaries, interfaces, behaviors, and constraints.
-*   `sail-codebook.schema.json` & `sail-codebook.json`[cite: 9]: The standardized data dictionaries for SAIL implementation.
-*   See `SCHEMA-NOTES.md`[cite: 9] in the root directory for implementation details.
+The foundational JSON schemas defining the SAIL framework:
+*   `sail.schema.json`: The primary schema defining boundaries, interfaces, behaviors, and constraints.
+*   `sail-codebook.schema.json` & `sail-codebook.json`: The standardized data dictionaries for SAIL implementation.
+*   See `SCHEMA-NOTES.md` in the root directory for implementation details.
 
 ### 3. AI Agent Templates (`/templates`)
-Markdown templates designed to enforce SAIL guardrails within LLM/AI workflows[cite: 9]:
-*   `01-agent-architecture-context.md`[cite: 9]: Establishes system boundaries for the AI.
-*   `02-implement-feature-with-sail-guardrails.md`[cite: 9]: Prompts for feature generation without violating constraints.
-*   `03-review-code-against-sail.md`[cite: 9]: AI instructions for architectural drift detection.
-*   `04-propose-architecture-change.md`[cite: 9]: Structured format for architectural mutation.
+Markdown templates designed to enforce SAIL guardrails within LLM/AI workflows:
+*   `01-agent-architecture-context.md`: Establishes system boundaries for the AI.
+*   `02-implement-feature-with-sail-guardrails.md`: Prompts for feature generation without violating constraints.
+*   `03-review-code-against-sail.md`: AI instructions for architectural drift detection.
+*   `04-propose-architecture-change.md`: Structured format for architectural mutation.
 
 ### 4. Validation Tools (`/tools`)
-Python scripts used to parse, validate, and build context windows for AI agents[cite: 9]:
-*   `validate-sail.py`[cite: 9]: Script to validate your architecture against the SAIL schema.
-*   `build-ai-context.py`[cite: 9]: Compiles SAIL definitions into an optimized context window for LLMs.
+Python scripts used to parse, validate, and build context windows for AI agents:
+*   `validate-sail.py`: Script to validate your architecture against the SAIL schema.
+*   `build-ai-context.py`: Compiles SAIL definitions into an optimized context window for LLMs.
 
 ### 5. Reference Examples (`/examples`)
-Real-world outputs and summaries[cite: 9]:
-*   `GridGuard.ai-context.summary.json`[cite: 9]
-*   `model-diff.example.json`[cite: 9]
-*   `validation-report.example.json`[cite: 9] (See `VALIDATION-RESULTS.json`[cite: 9] at root for live output).
+Real-world outputs and summaries:
+*   `GridGuard.ai-context.summary.json`
+*   `model-diff.example.json`
+*   `validation-report.example.json` (See `VALIDATION-RESULTS.json` at root for live output).
+
+## Rendered SAIL Examples
+
+- [SAIL Framework Examples](https://thesimmermon.github.io/SAIL-Framework/)
+- [GridGuard](https://thesimmermon.github.io/SAIL-Framework/examples/GridGuard/)
+- [Baggage Handling](https://thesimmermon.github.io/SAIL-Framework/examples/BaggageHandling/)
 
 ## 📖 The Book: Mastering the SAIL Framework
 This repository is the practical companion to the book ***Applied Software Architecture: Mastering the SAIL Framework*** (published June 2026).
