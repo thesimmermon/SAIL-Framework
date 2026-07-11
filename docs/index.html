@@ -1,48 +1,60 @@
 <!doctype html>
 <html lang="en">
+
 <head>
+  <link rel="icon" type="image/png" href="sail-logo.png">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SAIL Framework Examples</title>
-  <meta name="description" content="Reference examples, architecture viewers, PRDs, and SAIL files for the Software Architecture Iconographic Language.">
+  <title>SAIL Framework | Software Architecture Iconographic Language</title>
+  <meta name="description"
+    content="SAIL is a formal visual language designed for modeling software architecture at the system level. Browse reference examples, architecture viewers, PRDs, and SAIL files.">
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <header>
     <div class="wrap">
       <nav aria-label="Primary">
-        <a class="brand" href="./">SAIL Framework</a>
+        <a class="brand" href="./">
+          <img src="sail-logo.png" alt="SAIL Logo" class="brand-logo" />
+          SAIL Framework
+        </a>
         <div class="links">
-          <a href="#examples">Examples</a>
-          <a href="#xebec">Xebec</a>
-          <a href="https://getsail.org/book/">Book Companion</a>
-          <a href="https://github.com/thesimmermon/SAIL-Framework">GitHub Repo</a>
+          <a href="./">Home</a>
+          <a href="specification/">Specification</a>
+          <a href="examples/">Examples</a>
+          <a href="book/">Book</a>
+          <a href="https://github.com/thesimmermon/SAIL-Framework" target="_blank" rel="noopener">GitHub Repo</a>
         </div>
       </nav>
 
       <section class="hero" aria-labelledby="page-title">
         <div class="hero-card">
-          <p class="eyebrow">Software Architecture Iconographic Language</p>
-          <h1 id="page-title">SAIL Framework Examples</h1>
+          <p class="eyebrow">A Formal Visual Language</p>
+          <h1 id="page-title">Software Architecture<br>Iconographic Language</h1>
           <p class="lede">
-            Reference architectures, product requirement documents, SAIL model files,
-            and browser-based architecture viewers for learning and applying SAIL.
+            SAIL is a standardized vocabulary of graphic symbols and diagram elements that replace ambiguous
+            “box-and-line” diagrams with precise, semantic models for system-level architecture.
           </p>
           <div class="actions">
-            <a class="button primary" href="#examples">Browse examples</a>
-            <a class="button" href="https://getsail.org/book/">Book companion site</a>
+            <a class="button primary" href="specification/">Read the Specification</a>
+            <a class="button" href="examples/">Browse Examples</a>
+            <a class="button" href="https://github.com/thesimmermon/SAIL-Framework">View on GitHub</a>
           </div>
         </div>
 
         <aside class="side-card" aria-labelledby="what-is-sail">
-          <h2 id="what-is-sail">What is here?</h2>
+          <h2 id="what-is-sail">Why SAIL?</h2>
           <p>
-            Each example can include a PRD, a rendered SAIL architecture viewer,
-            the source <code>.sail</code> model for Xebec, validation outputs, and
-            supporting artifacts.
+            Technical diagrams often suffer from two extremes: too vague for developers to implement, or too detailed
+            for business stakeholders to understand. SAIL bridges this gap by operating at the System Architecture
+            level.
           </p>
           <p>
-            The HTML viewers are self-contained and can be opened directly in the browser.
+            <strong>Architecture as AI Guardrails:</strong> As we increasingly rely on AI coding agents, architectural
+            clarity is critical. Agents can read code, but they need explicit boundaries, responsibilities, and
+            constraints to avoid drift. A machine-readable SAIL model gives both humans and machines a clear source of
+            truth.
           </p>
         </aside>
       </section>
@@ -51,119 +63,57 @@
 
   <main>
     <div class="wrap">
-      <section class="section" id="examples" aria-labelledby="examples-heading">
-        <div class="section-heading">
-          <div>
-            <h2 id="examples-heading">Reference examples</h2>
+
+      <div class="grid">
+        <article class="card">
+          <h3>The Specification</h3>
+          <p>
+            Learn the grammar, syntax, and semantics of the SAIL framework. Dive deep into the Structural, Behavioral,
+            and Intrinsic pillars that govern comprehensive architectural models.
+          </p>
+          <div class="card-actions">
+            <a class="button primary" href="specification/">Go to Specification</a>
           </div>
-        </div>
+        </article>
 
-        <div class="grid">
-          <article class="card">
-            <h3>GridGuard (Book Example)</h3>
-            <p>
-              A reference SAIL architecture example with a PRD, architecture viewer,
-              source SAIL model, validation report, and model diff artifacts.
-            </p>
-            <div class="meta">
-              <span class="tag">PRD</span>
-              <span class="tag">Architecture viewer</span>
-              <span class="tag">.sail source</span>
-            </div>
-            <div class="card-actions">
-              <a class="button primary" href="examples/GridGuard/">Open landing page</a>
-              <a class="button" href="examples/GridGuard/GridGuard-SAIL-ARCHITECTURE.html">Open viewer</a>
-            </div>
-          </article>
+        <article class="card">
+          <h3>Reference Examples</h3>
+          <p>
+            Explore a collection of standardized reference architectures ranging from simple workflows to complex
+            systems. View architecture, download `.sail` models, and review PRDs.
+          </p>
+          <div class="card-actions">
+            <a class="button primary" href="examples/">View all Examples</a>
+          </div>
+        </article>
+      </div>
 
-          <article class="card">
-            <h3>Baggage Handling</h3>
-            <p>
-              A SAIL architecture example for a baggage handling system. The PRD link
-              is intentionally left as a placeholder until the PRD is added.
-            </p>
-            <div class="meta">
-              <span class="tag">Architecture viewer</span>
-              <span class="tag">.sail source</span>
-              <span class="tag">PRD</span>
-            </div>
-            <div class="card-actions">
-              <a class="button primary" href="examples/BaggageHandling/">Open landing page</a>
-              <a class="button" href="examples/BaggageHandling/bhs.html">Open viewer</a>
-            </div>
-          </article>
-
-          <!--
-            ADD NEW EXAMPLE CARD HERE
-
-            Recommended folder pattern:
-              docs/examples/ExampleName/
-                index.html
-                ExampleName.html
-                ExampleName.sail
-                ExampleName-PRD.pdf
-                validation-report.example.json
-                model-diff.example.json
-
-            Then add a card like this:
-
-            <article class="card">
-              <h3>Example Name</h3>
-              <p>One-sentence description of the architecture example.</p>
-              <div class="meta">
-                <span class="tag">PRD available</span>
-                <span class="tag">Architecture viewer</span>
-                <span class="tag">.sail source</span>
-              </div>
-              <div class="card-actions">
-                <a class="button primary" href="examples/ExampleName/">Open landing page</a>
-                <a class="button" href="examples/ExampleName/ExampleName.html">Open viewer</a>
-              </div>
-            </article>
-          -->
-        </div>
-      </section>
-
-      <section class="section" id="xebec" aria-labelledby="xebec-heading">
-        <div class="section-heading">
-          <div>
-            <h2 id="xebec-heading">Xebec Designer</h2>
-            <p>
-              Xebec is the SAIL designer used to create, inspect, and explore
-              <code>.sail</code> architecture files. The <a href="https://getsail.org/book/"><b>book companion site</b></a> currently
-              provides Xebec downloads and supporting materials.
-            </p><br/>
-			<a class="button" href="https://getsail.org/book/">Book companion site</a>
+      <section class="section">
+        <div class="hero-card" style="padding: 40px;">
+          <h3>Mastering the SAIL Framework</h3>
+          <p class="lede" style="margin-top: 10px; margin-bottom: 24px; max-width: 100%;">
+            Get the official eBook, <em>Applied Software Architecture</em>. It is the complete guide to learning and
+            applying the SAIL framework in real-world scenarios.
+          </p>
+          <div class="actions" style="margin-top: 0;">
+            <a class="button primary" href="book/">Learn More & Download</a>
+            <a class="button support" href="https://www.buymeacoffee.com/thesimmermon" target="_blank">
+              🍕 Buy me a pizza
+            </a>
           </div>
         </div>
       </section>
 
-      <section class="section" aria-labelledby="repo-heading">
-        <div class="grid">
-          <article class="card">
-            <h3 id="repo-heading">Repository resources</h3>
-            <p>
-              Source schemas, templates, validation tools, and AI guardrail prompts live
-              in the GitHub repository.
-            </p>
-            <div class="card-actions">
-              <a class="button" href="https://github.com/thesimmermon/SAIL-Framework/tree/main/schema">Schemas</a>
-              <a class="button" href="https://github.com/thesimmermon/SAIL-Framework/tree/main/templates">Templates</a>
-              <a class="button" href="https://github.com/thesimmermon/SAIL-Framework/tree/main/tools">Tools</a>
-            </div>
-          </article>
-        </div>
-      </section>
     </div>
   </main>
 
   <footer>
     <div class="wrap">
       <p>
-        SAIL Framework examples. Companion resources for Applied Software Architecture:
-        Mastering the SAIL Framework.
+        SAIL Framework &copy; 2026. A formal visual language for software architecture.
       </p>
     </div>
   </footer>
 </body>
+
 </html>

@@ -1,169 +1,251 @@
 <!doctype html>
 <html lang="en">
+
 <head>
+  <link rel="icon" type="image/png" href="../sail-logo.png">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SAIL Framework Examples</title>
-  <meta name="description" content="Reference examples, architecture viewers, PRDs, and SAIL files for the Software Architecture Iconographic Language.">
+  <title>SAIL Examples | Software Architecture Iconographic Language</title>
+  <meta name="description" content="Reference architectures, PRDs, and SAIL models for learning the SAIL framework.">
   <link rel="stylesheet" href="../styles.css">
 </head>
+
 <body>
   <header>
     <div class="wrap">
       <nav aria-label="Primary">
-        <a class="brand" href="./">SAIL Framework</a>
+        <a class="brand" href="../">
+          <img src="../sail-logo.png" alt="SAIL Logo" class="brand-logo" />
+          SAIL Framework
+        </a>
         <div class="links">
-          <a href="#examples">Examples</a>
-          <a href="#xebec">Xebec</a>
-          <a href="https://getsail.org/book/">Book Companion</a>
-          <a href="https://github.com/thesimmermon/SAIL-Framework">GitHub Repo</a>
+          <a href="../">Home</a>
+          <a href="../specification">Specification</a>
+          <a href="./">Examples</a>
+          <a href="../book">Book</a>
+          <a href="https://github.com/thesimmermon/SAIL-Framework" target="_blank" rel="noopener">GitHub Repo</a>
         </div>
       </nav>
 
-      <section class="hero" aria-labelledby="page-title">
-        <div class="hero-card">
-          <p class="eyebrow">Software Architecture Iconographic Language</p>
-          <h1 id="page-title">SAIL Framework Examples</h1>
-          <p class="lede">
-            Reference architectures, product requirement documents, SAIL model files,
-            and browser-based architecture viewers for learning and applying SAIL.
-          </p>
-          <div class="actions">
-            <a class="button primary" href="#examples">Browse examples</a>
-            <a class="button" href="https://getsail.org/book/">Book companion site</a>
-          </div>
-        </div>
-
-        <aside class="side-card" aria-labelledby="what-is-sail">
-          <h2 id="what-is-sail">What is here?</h2>
-          <p>
-            Each example can include a PRD, a rendered SAIL architecture viewer,
-            the source <code>.sail</code> model for Xebec, validation outputs, and
-            supporting artifacts.
-          </p>
-          <p>
-            The HTML viewers are self-contained and can be opened directly in the browser.
-          </p>
-        </aside>
+      <section class="hero-card" style="text-align: center; padding: 60px 10px;" aria-labelledby="page-title">
+        <p class="eyebrow" style="justify-content: center;">Reference Catalog</p>
+        <h1 id="page-title">SAIL Architecture Examples</h1>
+        <p class="lede" style="margin: 20px auto 0;">
+          Explore a collection of standardized reference architectures ranging from simple workflows to complex systems.
+          Each example includes a PRD, a rendered architecture viewer, and the source <code>.sail</code> model.
+        </p>
       </section>
     </div>
   </header>
 
   <main>
     <div class="wrap">
-      <section class="section" id="examples" aria-labelledby="examples-heading">
-        <div class="section-heading">
-          <div>
-            <h2 id="examples-heading">Reference examples</h2>
-          </div>
-        </div>
-
-        <div class="grid">
-          <article class="card">
-            <h3>GridGuard (Book Example)</h3>
-            <p>
-              A reference SAIL architecture example with a PRD, architecture viewer,
-              source SAIL model, validation report, and model diff artifacts.
-            </p>
-            <div class="meta">
-              <span class="tag">PRD</span>
-              <span class="tag">Architecture viewer</span>
-              <span class="tag">.sail source</span>
-            </div>
-            <div class="card-actions">
-              <a class="button primary" href="examples/GridGuard/">Open landing page</a>
-              <a class="button" href="examples/GridGuard/GridGuard-SAIL-ARCHITECTURE.html">Open viewer</a>
-            </div>
-          </article>
-
-          <article class="card">
-            <h3>Baggage Handling</h3>
-            <p>
-              A SAIL architecture example for a baggage handling system. The PRD link
-              is intentionally left as a placeholder until the PRD is added.
-            </p>
-            <div class="meta">
-              <span class="tag">Architecture viewer</span>
-              <span class="tag">.sail source</span>
-              <span class="tag">PRD</span>
-            </div>
-            <div class="card-actions">
-              <a class="button primary" href="examples/BaggageHandling/">Open landing page</a>
-              <a class="button" href="examples/BaggageHandling/bhs.html">Open viewer</a>
-            </div>
-          </article>
-
-          <!--
-            ADD NEW EXAMPLE CARD HERE
-
-            Recommended folder pattern:
-              docs/examples/ExampleName/
-                index.html
-                ExampleName.html
-                ExampleName.sail
-                ExampleName-PRD.pdf
-                validation-report.example.json
-                model-diff.example.json
-
-            Then add a card like this:
-
-            <article class="card">
-              <h3>Example Name</h3>
-              <p>One-sentence description of the architecture example.</p>
-              <div class="meta">
-                <span class="tag">PRD available</span>
-                <span class="tag">Architecture viewer</span>
-                <span class="tag">.sail source</span>
-              </div>
-              <div class="card-actions">
-                <a class="button primary" href="examples/ExampleName/">Open landing page</a>
-                <a class="button" href="examples/ExampleName/ExampleName.html">Open viewer</a>
-              </div>
-            </article>
-          -->
-        </div>
-      </section>
-
-      <section class="section" id="xebec" aria-labelledby="xebec-heading">
-        <div class="section-heading">
-          <div>
-            <h2 id="xebec-heading">Xebec Designer</h2>
-            <p>
-              Xebec is the SAIL designer used to create, inspect, and explore
-              <code>.sail</code> architecture files. The <a href="https://getsail.org/book/"><b>book companion site</b></a> currently
-              provides Xebec downloads and supporting materials.
-            </p><br/>
-			<a class="button" href="https://getsail.org/book/">Book companion site</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="section" aria-labelledby="repo-heading">
-        <div class="grid">
-          <article class="card">
-            <h3 id="repo-heading">Repository resources</h3>
-            <p>
-              Source schemas, templates, validation tools, and AI guardrail prompts live
-              in the GitHub repository.
-            </p>
-            <div class="card-actions">
-              <a class="button" href="https://github.com/thesimmermon/SAIL-Framework/tree/main/schema">Schemas</a>
-              <a class="button" href="https://github.com/thesimmermon/SAIL-Framework/tree/main/templates">Templates</a>
-              <a class="button" href="https://github.com/thesimmermon/SAIL-Framework/tree/main/tools">Tools</a>
-            </div>
-          </article>
+      <section>
+        <div class="catalog-table-wrapper">
+          <table class="catalog-table">
+            <thead>
+              <tr>
+                <th>Example Project</th>
+                <th>Included Artifacts</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="catalog-body">
+              <tr>
+                <td colspan="3" style="text-align: center; padding: 40px; color: var(--muted);">
+                  Loading examples...
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </section>
     </div>
   </main>
 
+  <div id="example-modal" class="modal-overlay">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <p class="eyebrow">Example Reference</p>
+        <h2 id="modal-title">Example Title</h2>
+      </div>
+      <div class="modal-body">
+        <p id="modal-desc" class="lede" style="font-size: 1rem;">Description goes here.</p>
+
+        <div class="modal-artifacts">
+          <h3>Included Artifacts</h3>
+          <div class="artifact-cards">
+
+            <a id="modal-link-viewer" href="#" target="_blank" class="artifact-card">
+              <div class="artifact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </div>
+              <div class="artifact-info">
+                <h4>Architecture Viewer</h4>
+                <p>Open HTML visualization in new tab</p>
+              </div>
+            </a>
+
+            <a id="modal-link-viewer-dl" href="#" download class="artifact-card">
+              <div class="artifact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+              </div>
+              <div class="artifact-info">
+                <h4>Download Viewer</h4>
+                <p>Save standalone .html file</p>
+              </div>
+            </a>
+
+            <a id="modal-link-prd" href="#" target="_blank" class="artifact-card">
+              <div class="artifact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <div class="artifact-info">
+                <h4>PRD</h4>
+                <p>Requirements (.pdf)</p>
+              </div>
+            </a>
+
+            <a id="modal-link-model" href="#" download class="artifact-card">
+              <div class="artifact-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+              </div>
+              <div class="artifact-info">
+                <h4>Source Model</h4>
+                <p>Download .sail file</p>
+              </div>
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <footer>
     <div class="wrap">
-      <p>
-        SAIL Framework examples. Companion resources for Applied Software Architecture:
-        Mastering the SAIL Framework.
-      </p>
+      <p><a href="../">Back to SAIL Framework Home</a></p>
     </div>
   </footer>
 </body>
+
+<script>
+  let examplesData = [];
+
+  // Elements
+  const tbody = document.getElementById('catalog-body');
+  const modal = document.getElementById('example-modal');
+  const closeBtn = document.getElementById('modal-close');
+
+  // Modal Elements
+  const modalTitle = document.getElementById('modal-title');
+  const modalDesc = document.getElementById('modal-desc');
+  const linkViewer = document.getElementById('modal-link-viewer');
+  const linkViewerDl = document.getElementById('modal-link-viewer-dl');
+  const linkPrd = document.getElementById('modal-link-prd');
+  const linkModel = document.getElementById('modal-link-model');
+
+  // Fetch data
+  fetch('examples.json')
+    .then(res => res.json())
+    .then(data => {
+      examplesData = data;
+      renderTable();
+
+      // Check for URL parameter to auto-open modal
+      const urlParams = new URLSearchParams(window.location.search);
+      const exampleId = urlParams.get('example');
+      if (exampleId) {
+        const index = examplesData.findIndex(ex => ex.id === exampleId);
+        if (index !== -1) {
+          openModal(index);
+        }
+      }
+    })
+    .catch(err => {
+      console.error("Failed to load examples", err);
+      tbody.innerHTML = '<tr><td colspan="3" style="text-align:center; padding: 40px; color: #ef4444;">Failed to load examples catalog.</td></tr>';
+    });
+
+  function renderTable() {
+    tbody.innerHTML = '';
+    examplesData.forEach((example, index) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+          <td>
+            <p class="example-title">${example.title}</p>
+            <p class="example-desc">${example.description}</p>
+          </td>
+          <td>
+            <div class="tag-list">
+              <span class="tag">Viewer</span>
+              <span class="tag">.sail model</span>
+              <span class="tag">PRD</span>
+            </div>
+          </td>
+          <td class="button-cell">
+            <button class="button primary" onclick="openModal(${index})" style="min-height: auto; padding: 8px 24px;">Explore</button>
+          </td>
+        `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  function openModal(index) {
+    const example = examplesData[index];
+    modalTitle.textContent = example.title;
+    modalDesc.textContent = example.description;
+
+    const viewerPath = example.folder + '/' + example.viewer;
+    linkViewer.href = viewerPath;
+    linkViewerDl.href = viewerPath;
+
+    linkPrd.href = example.folder + '/' + example.prd;
+    linkModel.href = example.folder + '/' + example.model;
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // prevent background scrolling
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  closeBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+
+</script>
+
 </html>

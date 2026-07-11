@@ -1,0 +1,65 @@
+[
+  {
+    "id": "gridguard",
+    "title": "GridGuard (Book Example)",
+    "description": "A reference SAIL architecture featured heavily in the official eBook, demonstrating utility grid monitoring.",
+    "folder": "GridGuard",
+    "prd": "GridGuardPRD.pdf",
+    "viewer": "GridGuard-SAIL-ARCHITECTURE.html",
+    "model": "GridGuard.sail"
+  },
+  {
+    "id": "baggage",
+    "title": "Baggage Handling",
+    "description": "A comprehensive SAIL architecture example demonstrating a complex airport baggage handling system.",
+    "folder": "BaggageHandling",
+    "prd": "BaggageHandingPRD.pdf",
+    "viewer": "bhs.html",
+    "model": "bhs.sail"
+  },
+  {
+    "id": "clinic",
+    "title": "Clinic Appointments",
+    "description": "Architecture for a patient scheduling and clinic appointment management system.",
+    "folder": "ClinicAppointments",
+    "prd": "ClinicAppointmentsPRD.pdf",
+    "viewer": "ClinicAppointments.html",
+    "model": "ClinicAppointments.sail"
+  },
+  {
+    "id": "docapproval",
+    "title": "Document Approval",
+    "description": "A robust document approval workflow system with role-based routing and auditing.",
+    "folder": "DocumentApproval",
+    "prd": "DocumentApprovalPRD.pdf",
+    "viewer": "DocumentApproval.html",
+    "model": "DocumentApproval.sail"
+  },
+  {
+    "id": "fleet",
+    "title": "Fleet Maint Coord",
+    "description": "Fleet maintenance and coordination system to track vehicle health and servicing.",
+    "folder": "FleetMaintCoord",
+    "prd": "FleetMaintCoordPRD.pdf",
+    "viewer": "FleetMaintCoord.html",
+    "model": "FleetMaintCoord.sail"
+  },
+  {
+    "id": "marketplace",
+    "title": "Online Marketplace",
+    "description": "A scalable e-commerce architecture supporting multi-vendor catalogs and payments.",
+    "folder": "OnlineMarketplace",
+    "prd": "OnlineMarketplacePRD.pdf",
+    "viewer": "OnlineMarketplace.html",
+    "model": "OnlineMarketplace.sail"
+  },
+  {
+    "id": "smartbuilding",
+    "title": "Smart Building",
+    "description": "IoT and real-time event processing architecture for managing smart building automation.",
+    "folder": "SmartBuilding",
+    "prd": "SmartBuildingPRD.pdf",
+    "viewer": "SmartBuilding.html",
+    "model": "SmartBuilding.sail"
+  }
+]
