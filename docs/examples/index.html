@@ -168,8 +168,9 @@
   const linkPrd = document.getElementById('modal-link-prd');
   const linkModel = document.getElementById('modal-link-model');
 
-  // Fetch data
-  fetch('examples.json')
+  // Fetch data (with cache busting)
+  const cacheBuster = new Date().getTime();
+  fetch(`examples.json?v=${cacheBuster}`)
     .then(res => res.json())
     .then(data => {
       examplesData = data;
