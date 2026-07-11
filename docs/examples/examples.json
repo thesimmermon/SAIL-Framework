@@ -6,7 +6,10 @@
     "folder": "GridGuard",
     "prd": "GridGuardPRD.pdf",
     "viewer": "GridGuard-SAIL-ARCHITECTURE.html",
-    "model": "GridGuard.sail"
+    "model": "GridGuard.sail",
+    "viewer_enabled": true,
+    "model_enabled": true,
+    "prd_enabled": true
   },
   {
     "id": "baggage",
@@ -15,7 +18,10 @@
     "folder": "BaggageHandling",
     "prd": "BaggageHandingPRD.pdf",
     "viewer": "bhs.html",
-    "model": "bhs.sail"
+    "model": "bhs.sail",
+    "viewer_enabled": true,
+    "model_enabled": true,
+    "prd_enabled": true
   },
   {
     "id": "clinic",
@@ -24,7 +30,10 @@
     "folder": "ClinicAppointments",
     "prd": "ClinicAppointmentsPRD.pdf",
     "viewer": "ClinicAppointments.html",
-    "model": "ClinicAppointments.sail"
+    "model": "ClinicAppointments.sail",
+    "viewer_enabled": false,
+    "model_enabled": false,
+    "prd_enabled": true
   },
   {
     "id": "docapproval",
@@ -33,7 +42,10 @@
     "folder": "DocumentApproval",
     "prd": "DocumentApprovalPRD.pdf",
     "viewer": "DocumentApproval.html",
-    "model": "DocumentApproval.sail"
+    "model": "DocumentApproval.sail",
+    "viewer_enabled": false,
+    "model_enabled": false,
+    "prd_enabled": true
   },
   {
     "id": "fleet",
@@ -42,7 +54,10 @@
     "folder": "FleetMaintCoord",
     "prd": "FleetMaintCoordPRD.pdf",
     "viewer": "FleetMaintCoord.html",
-    "model": "FleetMaintCoord.sail"
+    "model": "FleetMaintCoord.sail",
+    "viewer_enabled": false,
+    "model_enabled": false,
+    "prd_enabled": true
   },
   {
     "id": "marketplace",
@@ -51,7 +66,10 @@
     "folder": "OnlineMarketplace",
     "prd": "OnlineMarketplacePRD.pdf",
     "viewer": "OnlineMarketplace.html",
-    "model": "OnlineMarketplace.sail"
+    "model": "OnlineMarketplace.sail",
+    "viewer_enabled": false,
+    "model_enabled": false,
+    "prd_enabled": true
   },
   {
     "id": "smartbuilding",
@@ -60,6 +78,9 @@
     "folder": "SmartBuilding",
     "prd": "SmartBuildingPRD.pdf",
     "viewer": "SmartBuilding.html",
-    "model": "SmartBuilding.sail"
+    "model": "SmartBuilding.sail",
+    "viewer_enabled": false,
+    "model_enabled": false,
+    "prd_enabled": true
   }
 ]

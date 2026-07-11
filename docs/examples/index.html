@@ -218,13 +218,34 @@
     const example = examplesData[index];
     modalTitle.textContent = example.title;
     modalDesc.textContent = example.description;
-
+    
     const viewerPath = example.folder + '/' + example.viewer;
-    linkViewer.href = viewerPath;
-    linkViewerDl.href = viewerPath;
 
-    linkPrd.href = example.folder + '/' + example.prd;
-    linkModel.href = example.folder + '/' + example.model;
+    if (example.viewer_enabled) {
+      linkViewer.href = viewerPath;
+      linkViewerDl.href = viewerPath;
+    } else {
+      linkViewer.removeAttribute('href');
+      linkViewerDl.removeAttribute('href');
+    }
+
+    if (example.prd_enabled) {
+      linkPrd.href = example.folder + '/' + example.prd;
+    } else {
+      linkPrd.removeAttribute('href');
+    }
+    
+    if (example.model_enabled) {
+      linkModel.href = example.folder + '/' + example.model;
+    } else {
+      linkModel.removeAttribute('href');
+    }
+
+    // Toggle disabled state based on JSON config
+    linkViewer.classList.toggle('disabled', !example.viewer_enabled);
+    linkViewerDl.classList.toggle('disabled', !example.viewer_enabled);
+    linkPrd.classList.toggle('disabled', !example.prd_enabled);
+    linkModel.classList.toggle('disabled', !example.model_enabled);
 
     modal.classList.add('active');
     document.body.style.overflow = 'hidden'; // prevent background scrolling
