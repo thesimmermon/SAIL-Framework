@@ -261,7 +261,7 @@ Behavioral elements are also part of this inventory. An Interaction is not merel
 <a id="section-3-2"></a>
 ## 3.2 Boundary Participant
 
-<img src="images/boundary-participant-symbol.png" alt="Boundary Participant element symbol" width="280" />
+<img src="images/boundary-participant-symbol.png" alt="Boundary Participant element symbol" width="300" />
 
 **Definition:** A Boundary Participant represents any entity that resides *outside* the scope of the system being modeled but interacts with it. They define the external context and boundaries of the architecture.
 
@@ -280,7 +280,7 @@ Behavioral elements are also part of this inventory. An Interaction is not merel
 <a id="section-3-3"></a>
 ## 3.3 System
 
-<img src="images/system-symbol.png" alt="System element symbol" width="36" />
+<img src="images/system-symbol.png" alt="System element symbol" width="300" />
 
 **Definition:** A System is a high-level container of functionality. It represents a deployable unit that operates independently. In the context of the architecture, it is the primary subject of design. Large systems may be composed of smaller Subsystems (which are also modeled as System elements).
 
@@ -298,7 +298,7 @@ Behavioral elements are also part of this inventory. An Interaction is not merel
 <a id="section-3-4"></a>
 ## 3.4 Datastore
 
-<img src="images/datastore-symbol.png" alt="Datastore element symbol" width="36" />
+<img src="images/datastore-symbol.png" alt="Datastore element symbol" width="300" />
 
 **Definition:** A Datastore represents any component responsible for managing state, persistence, or buffering data. It is a specialized structural element distinct from processing units.
 
@@ -317,7 +317,7 @@ Behavioral elements are also part of this inventory. An Interaction is not merel
 <a id="section-3-5"></a>
 ## 3.5 Service Unit
 
-<img src="images/service-unit-symbol.png" alt="Service Unit element symbol" width="36" />
+<img src="images/service-unit-symbol.png" alt="Service Unit element symbol" width="300" />
 
 **Definition:** A Service Unit is the atomic structural building block in SAIL. It represents a modular component with a single responsibility. It is the lowest level of structural decomposition; SAIL does not model the internal classes or functions within a Service Unit.
 
