@@ -272,10 +272,10 @@ Behavioral elements are also part of this inventory. An Interaction is not merel
 
 | Kind            | Icon                                                                                         | Description                                                                               |
 |-----------------|----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| User            | <img src="images/boundary-user-icon.png" alt="User boundary participant icon" width="36" /> | Represents a human user interacting with the system.                                      |
-| External System | <img src="images/boundary-external-system-icon.png" alt="External system boundary participant icon" width="36" /> | Represents an external software system or service (e.g., Payment Gateway, Legacy ERP).    |
-| Device          | <img src="images/boundary-device-icon.png" alt="Device boundary participant icon" width="36" /> | Represents a hardware device or computing appliance (e.g., Mobile Phone, IoT Controller). |
-| Sensor          | <img src="images/boundary-sensor-icon.png" alt="Sensor boundary participant icon" width="36" /> | Represents a specialized hardware input device (e.g., Thermostat, Motion Sensor).         |
+| User            | <img src="images/boundary-user-icon.png" alt="User boundary participant icon" width="50" /> | Represents a human user interacting with the system.                                      |
+| External System | <img src="images/boundary-external-system-icon.png" alt="External system boundary participant icon" width="50" /> | Represents an external software system or service (e.g., Payment Gateway, Legacy ERP).    |
+| Device          | <img src="images/boundary-device-icon.png" alt="Device boundary participant icon" width="50" /> | Represents a hardware device or computing appliance (e.g., Mobile Phone, IoT Controller). |
+| Sensor          | <img src="images/boundary-sensor-icon.png" alt="Sensor boundary participant icon" width="50" /> | Represents a specialized hardware input device (e.g., Thermostat, Motion Sensor).         |
 
 <a id="section-3-3"></a>
 ## 3.3 System
@@ -290,10 +290,10 @@ Behavioral elements are also part of this inventory. An Interaction is not merel
 
 | Kind             | Icon                                                                                          | Description                                                                |
 |------------------|-----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------|
-| Hosted API       | <img src="images/system-hosted-api-icon.png" alt="Hosted API system icon" width="36" /> | A system that exposes functionality via a network API (REST, gRPC, etc.).  |
-| Service / Daemon | <img src="images/system-service-daemon-icon.png" alt="Service or daemon system icon" width="36" /> | An autonomous background process or service with no direct user interface. |
-| Interactive App  | <img src="images/system-interactive-app-icon.png" alt="Interactive application system icon" width="36" /> | A system with a visual user interface (Web App, Desktop App, Mobile App).  |
-| CLI App          | <img src="images/system-cli-app-icon.png" alt="Command-line application system icon" width="36" /> | A command-line utility or tool.                                            |
+| Hosted API       | <img src="images/system-hosted-api-icon.png" alt="Hosted API system icon" width="50" /> | A system that exposes functionality via a network API (REST, gRPC, etc.).  |
+| Service / Daemon | <img src="images/system-service-daemon-icon.png" alt="Service or daemon system icon" width="50" /> | An autonomous background process or service with no direct user interface. |
+| Interactive App  | <img src="images/system-interactive-app-icon.png" alt="Interactive application system icon" width="50" /> | A system with a visual user interface (Web App, Desktop App, Mobile App).  |
+| CLI App          | <img src="images/system-cli-app-icon.png" alt="Command-line application system icon" width="50" /> | A command-line utility or tool.                                            |
 
 <a id="section-3-4"></a>
 ## 3.4 Datastore
@@ -308,11 +308,11 @@ Behavioral elements are also part of this inventory. An Interaction is not merel
 
 | Kind          | Icon                                                                                          | Description                                                    |
 |---------------|-----------------------------------------------------------------------------------------------|----------------------------------------------------------------|
-| Relational DB | <img src="images/datastore-relational-db-icon.png" alt="Relational database datastore icon" width="36" /> | A structured SQL database (e.g., PostgreSQL, SQL Server).      |
-| NoSQL DB      | <img src="images/datastore-nosql-db-icon.png" alt="NoSQL database datastore icon" width="36" /> | A document, key-value, or graph store (e.g., Mongo, Redis).    |
-| File Storage  | <img src="images/datastore-file-storage-icon.png" alt="File storage datastore icon" width="36" /> | A file system, blob storage, or object store (e.g., S3, Disk). |
-| Queue         | <img src="images/datastore-queue-icon.png" alt="Queue datastore icon" width="36" /> | A message queue or buffer (e.g., RabbitMQ, SQS).               |
-| Bus           | <img src="images/datastore-bus-icon.png" alt="Event bus datastore icon" width="36" /> | An event streaming platform or bus (e.g., Kafka).              |
+| Relational DB | <img src="images/datastore-relational-db-icon.png" alt="Relational database datastore icon" width="50" /> | A structured SQL database (e.g., PostgreSQL, SQL Server).      |
+| NoSQL DB      | <img src="images/datastore-nosql-db-icon.png" alt="NoSQL database datastore icon" width="50" /> | A document, key-value, or graph store (e.g., Mongo, Redis).    |
+| File Storage  | <img src="images/datastore-file-storage-icon.png" alt="File storage datastore icon" width="50" /> | A file system, blob storage, or object store (e.g., S3, Disk). |
+| Queue         | <img src="images/datastore-queue-icon.png" alt="Queue datastore icon" width="50" /> | A message queue or buffer (e.g., RabbitMQ, SQS).               |
+| Bus           | <img src="images/datastore-bus-icon.png" alt="Event bus datastore icon" width="50" /> | An event streaming platform or bus (e.g., Kafka).              |
 
 <a id="section-3-5"></a>
 ## 3.5 Service Unit
@@ -328,13 +328,13 @@ Behavioral elements are also part of this inventory. An Interaction is not merel
 
 | Kind          | Icon                                                                                          | Description                                                                                                                                                                                                                                                          |
 |---------------|-----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| API Handler   | <img src="images/service-api-handler-icon.png" alt="API handler service unit icon" width="36" /> | A component responsible for handling API requests and routing logic.                                                                                                                                                                                                 |
-| UI Component  | <img src="images/service-ui-component-icon.png" alt="User-interface component service unit icon" width="36" /> | A specific view or module within a frontend application.                                                                                                                                                                                                             |
-| Integration   | <img src="images/service-integration-icon.png" alt="Integration service unit icon" width="36" /> | A component dedicated to managing connections with external systems (Adapters/Proxies).                                                                                                                                                                              |
-| Orchestrator  | <img src="images/service-orchestrator-icon.png" alt="Orchestrator service unit icon" width="36" /> | A component that manages complex workflows or business process logic.                                                                                                                                                                                                |
-| Library       | <img src="images/service-library-icon.png" alt="Library service unit icon" width="36" /> | A shared code library or utility package used by other units.                                                                                                                                                                                                        |
-| Closed Source | <img src="images/service-closed-source-icon.png" alt="Closed-source service unit icon" width="36" /> | A component that is purchased off the shelf that exposes and API but whose internals are unknown.                                                                                                                                                                    |
-| Processor     | <img src="images/service-processor-icon.png" alt="Processor service unit icon" width="36" /> | A component dedicated to applying deterministic computation to an input to produce an output (e.g., rules evaluation, classification, scoring, transformation). It may call helper services, but it does **not** own end-to-end workflow across multiple components. |
+| API Handler   | <img src="images/service-api-handler-icon.png" alt="API handler service unit icon" width="50" /> | A component responsible for handling API requests and routing logic.                                                                                                                                                                                                 |
+| UI Component  | <img src="images/service-ui-component-icon.png" alt="User-interface component service unit icon" width="50" /> | A specific view or module within a frontend application.                                                                                                                                                                                                             |
+| Integration   | <img src="images/service-integration-icon.png" alt="Integration service unit icon" width="50" /> | A component dedicated to managing connections with external systems (Adapters/Proxies).                                                                                                                                                                              |
+| Orchestrator  | <img src="images/service-orchestrator-icon.png" alt="Orchestrator service unit icon" width="50" /> | A component that manages complex workflows or business process logic.                                                                                                                                                                                                |
+| Library       | <img src="images/service-library-icon.png" alt="Library service unit icon" width="50" /> | A shared code library or utility package used by other units.                                                                                                                                                                                                        |
+| Closed Source | <img src="images/service-closed-source-icon.png" alt="Closed-source service unit icon" width="50" /> | A component that is purchased off the shelf that exposes and API but whose internals are unknown.                                                                                                                                                                    |
+| Processor     | <img src="images/service-processor-icon.png" alt="Processor service unit icon" width="50" /> | A component dedicated to applying deterministic computation to an input to produce an output (e.g., rules evaluation, classification, scoring, transformation). It may call helper services, but it does **not** own end-to-end workflow across multiple components. |
 
 <a id="section-3-6"></a>
 ## 3.6 Communication Pathway
@@ -888,12 +888,12 @@ SAIL defines a standard set of notation kinds to ensure these notes are recogniz
 
 | Kind        | Glyph                                                                                          | Description                                                                                                                  |
 |-------------|------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|
-| Annotation  | <img src="images/notation-annotation-icon.png" alt="Annotation notation icon" width="36" />  | A general-purpose sticky note or comment attached to an element or area for clarification.                                   |
-| Concept     | <img src="images/notation-concept-icon.png" alt="Concept notation icon" width="36" /> | Highlights a key architectural pattern or insight (e.g., “This uses the Strangler Fig pattern”).                             |
-| Information | <img src="images/notation-information-icon.png" alt="Information notation icon" width="36" />  | Meta-data about the diagram itself, such as Author, Date, Version, or Status (Draft/Approved).                               |
-| Legend      | <img src="images/notation-legend-icon.png" alt="Legend notation icon" width="36" /> | A key explaining color codes, custom icons, or specific line styles used in the diagram.                                     |
-| Rationale   | <img src="images/notation-rationale-icon.png" alt="Rationale notation icon" width="36" /> | Explains the reasoning behind a specific design choice or tradeoff. Can link to a formal Architecture Decision Record (ADR). |
-| ToDo        | <img src="images/notation-todo-icon.png" alt="ToDo notation icon" width="36" />  | A marker for incomplete areas or questions that need resolution (e.g., “Verify latency requirements”).                       |
+| Annotation  | <img src="images/notation-annotation-icon.png" alt="Annotation notation icon" width="40" />  | A general-purpose sticky note or comment attached to an element or area for clarification.                                   |
+| Concept     | <img src="images/notation-concept-icon.png" alt="Concept notation icon" width="40" /> | Highlights a key architectural pattern or insight (e.g., “This uses the Strangler Fig pattern”).                             |
+| Information | <img src="images/notation-information-icon.png" alt="Information notation icon" width="40" />  | Meta-data about the diagram itself, such as Author, Date, Version, or Status (Draft/Approved).                               |
+| Legend      | <img src="images/notation-legend-icon.png" alt="Legend notation icon" width="40" /> | A key explaining color codes, custom icons, or specific line styles used in the diagram.                                     |
+| Rationale   | <img src="images/notation-rationale-icon.png" alt="Rationale notation icon" width="40" /> | Explains the reasoning behind a specific design choice or tradeoff. Can link to a formal Architecture Decision Record (ADR). |
+| ToDo        | <img src="images/notation-todo-icon.png" alt="ToDo notation icon" width="40" />  | A marker for incomplete areas or questions that need resolution (e.g., “Verify latency requirements”).                       |
 
 ### Usage Best Practices
 
@@ -1164,9 +1164,9 @@ A team migrating to AWS might extend the **System** and **Datastore** types with
 
 | **Name** | **Icon**                                                                                      | **Description**                                                                     |
 |----------|-----------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
-| Lambda   | <img src="images/extension-aws-lambda-icon.png" alt="AWS Lambda extension icon" width="36" /> | A Circle containing the AWS Lambda logo. (Represents a serverless function system). |
-| S3       | <img src="images/extension-aws-s3-icon.png" alt="AWS S3 extension icon" width="36" /> | A Datastore square containing the S3 bucket icon. (Represents object storage).      |
-| DynamoDB | <img src="images/extension-aws-dynamodb-icon.png" alt="AWS DynamoDB extension icon" width="36" /> | A Datastore square containing the DynamoDB icon.                                    |
+| Lambda   | <img src="images/extension-aws-lambda-icon.png" alt="AWS Lambda extension icon" width="50" /> | A Circle containing the AWS Lambda logo. (Represents a serverless function system). |
+| S3       | <img src="images/extension-aws-s3-icon.png" alt="AWS S3 extension icon" width="50" /> | A Datastore square containing the S3 bucket icon. (Represents object storage).      |
+| DynamoDB | <img src="images/extension-aws-dynamodb-icon.png" alt="AWS DynamoDB extension icon" width="50" /> | A Datastore square containing the DynamoDB icon.                                    |
 
 ### Example: Healthcare Extension
 
@@ -1174,8 +1174,8 @@ A medical device team might extend the **Boundary Participant** type:
 
 | **Name**       | **Icon**                                                                                      | **Description**                                      |
 |----------------|-----------------------------------------------------------------------------------------------|------------------------------------------------------|
-| Patient        | <img src="images/extension-healthcare-patient-icon.png" alt="Healthcare patient extension icon" width="36" /> | A Square containing a medical cross or patient icon. |
-| Imaging Device | <img src="images/extension-healthcare-imaging-device-icon.png" alt="Healthcare imaging-device extension icon" width="36" /> | A Square containing an MRI scanner icon.             |
+| Patient        | <img src="images/extension-healthcare-patient-icon.png" alt="Healthcare patient extension icon" width="50" /> | A Square containing a medical cross or patient icon. |
+| Imaging Device | <img src="images/extension-healthcare-imaging-device-icon.png" alt="Healthcare imaging-device extension icon" width="50" /> | A Square containing an MRI scanner icon.             |
 
 <a id="section-9-3"></a>
 ## 9.3 Extending Intrinsic Categories
