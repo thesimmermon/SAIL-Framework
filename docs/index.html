@@ -5,14 +5,14 @@
   <link rel="icon" type="image/png" href="sail-logo.png">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SAIL Framework | Software Architecture Iconographic Language</title>
+  <title>SAIL &mdash; Software Architecture for Humans and AI Coding Agents</title>
   <meta name="description"
-    content="SAIL is a formal visual language designed for modeling software architecture at the system level. Browse reference examples, architecture viewers, PRDs, and SAIL files.">
-  <link rel="stylesheet" href="styles.css?v=1.1">
+    content="Architecture has a new reader. SAIL is a formal visual and machine-readable language that makes software boundaries, responsibilities, behavior, interfaces, and constraints explicit for people and AI coding agents.">
+  <link rel="stylesheet" href="styles.css?v=1.2">
 </head>
 
-<body>
-  <header>
+<body class="home-page">
+  <header class="site-header">
     <div class="wrap">
       <nav aria-label="Primary">
         <a class="brand" href="./">
@@ -29,83 +29,362 @@
         </div>
       </nav>
 
-      <section class="hero" aria-labelledby="page-title">
-        <div class="hero-card">
-          <p class="eyebrow">A Formal Visual Language</p>
-          <h1 id="page-title">Software Architecture<br>Iconographic Language</h1>
+      <section class="home-hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow">SAIL &mdash; Software Architecture Iconographic Language</p>
+          <h1 id="page-title">Architecture has a new reader.</h1>
           <p class="lede">
-            SAIL is a standardized vocabulary of graphic symbols and diagram elements that replace ambiguous
-            “box-and-line” diagrams with precise, semantic models for system-level architecture.
+            Your architecture is no longer read only by people.
+          </p>
+          <p>
+            AI coding agents are now implementing, refactoring, and extending real software systems. But without
+            explicit architectural context, they have to infer boundaries, responsibilities, interfaces, and constraints
+            from the code they happen to see.
+          </p>
+          <p>
+            SAIL makes architectural intent explicit &mdash; visual for people, structured for machines.
           </p>
           <div class="actions">
-            <a class="button primary" href="specification/">Read the Specification</a>
-            <a class="button" href="examples/">Browse Examples</a>
-            <a class="button" href="https://github.com/thesimmermon/SAIL-Framework">View on GitHub</a>
+            <a class="button primary" href="#real-example">See SAIL in Action</a>
+            <a class="button" href="specification/">Explore the Specification</a>
+            <a class="button subtle" href="https://github.com/thesimmermon/SAIL-Framework" target="_blank"
+              rel="noopener">View on GitHub</a>
           </div>
         </div>
 
-        <aside class="side-card" aria-labelledby="what-is-sail">
-          <h2 id="what-is-sail">Why SAIL?</h2>
-          <p>
-            Technical diagrams often suffer from two extremes: too vague for developers to implement, or too detailed
-            for business stakeholders to understand. SAIL bridges this gap by operating at the System Architecture
-            level.
-          </p>
-          <p>
-            <strong>Architecture as AI Guardrails:</strong> As we increasingly rely on AI coding agents, architectural
-            clarity is critical. Agents can read code, but they need explicit boundaries, responsibilities, and
-            constraints to avoid drift. A machine-readable SAIL model gives both humans and machines a clear source of
-            truth.
-          </p>
+        <aside class="architecture-panel" aria-label="One architecture, two readers">
+          <div class="panel-label">One architecture. Two readers.</div>
+          <div class="reader-demo">
+            <figure class="diagram-preview">
+              <figcaption>Human-readable view</figcaption>
+              <img src="examples/GridGuard/GridGuard-structural-context.svg"
+                alt="GridGuard SAIL structural context diagram with people, systems, sensors, and external systems">
+            </figure>
+            <div class="model-preview" aria-label="Representative machine-readable SAIL model fragment">
+              <div class="code-caption">Machine-readable model</div>
+              <pre><code>{
+  "Name": "GridGuard",
+  "Inventory": {
+    "StructuralElements": {
+      "GridGuard Solution": {
+        "ElementType": 1,
+        "SubType": "Generic"
+      },
+      "NEDS Mainframe": {
+        "ElementType": 0,
+        "SubType": "External System"
+      }
+    }
+  }
+}</code></pre>
+            </div>
+          </div>
         </aside>
       </section>
     </div>
   </header>
 
   <main>
-    <div class="wrap">
-
-      <div class="grid">
-        <article class="card">
-          <h3>The Specification</h3>
+    <section class="section problem-section" aria-labelledby="problem-title">
+      <div class="wrap">
+        <div class="section-heading stacked">
+          <p class="eyebrow">The Problem</p>
+          <h2 id="problem-title">AI can read your code.<br>It shouldn't have to infer your architecture.</h2>
           <p>
-            Learn the grammar, syntax, and semantics of the SAIL framework. Dive deep into the Structural, Behavioral,
-            and Intrinsic pillars that govern comprehensive architectural models.
+            Source code tells an AI agent what exists today. It does not reliably tell the agent what should exist.
           </p>
-          <div class="card-actions">
-            <a class="button primary" href="specification/">Go to Specification</a>
-          </div>
-        </article>
+        </div>
 
-        <article class="card">
-          <h3>Reference Examples</h3>
-          <p>
-            Explore a collection of standardized reference architectures ranging from simple workflows to complex
-            systems. View architecture, download `.sail` models, and review PRDs.
-          </p>
-          <div class="card-actions">
-            <a class="button primary" href="examples/">View all Examples</a>
-          </div>
-        </article>
+        <div class="question-grid" aria-label="Architectural questions code alone may not answer">
+          <div>Where does one system end and another begin?</div>
+          <div>Which component owns this responsibility?</div>
+          <div>Which interfaces are architectural contracts?</div>
+          <div>Which dependencies are intentional?</div>
+          <div>Which performance, security, or compliance constraints must survive the next change?</div>
+        </div>
+
+        <p class="section-callout">
+          Humans have struggled with the same ambiguity for decades. AI makes the consequences faster.
+        </p>
+        <p class="clarity-line">
+          SAIL was designed to make architecture understandable. It turns out machines need that clarity too.
+        </p>
       </div>
+    </section>
 
-      <section class="section">
-        <div class="hero-card" style="padding: 40px;">
-          <h3>Mastering the SAIL Framework</h3>
-          <p class="lede" style="margin-top: 10px; margin-bottom: 24px; max-width: 100%;">
-            Get the official eBook, <em>Applied Software Architecture</em>. It is the complete guide to learning and
-            applying the SAIL framework in real-world scenarios.
+    <section class="section" aria-labelledby="two-readers-title">
+      <div class="wrap">
+        <div class="section-heading stacked">
+          <p class="eyebrow">Shared Source Of Truth</p>
+          <h2 id="two-readers-title">One architecture. Two readers.</h2>
+        </div>
+
+        <div class="two-column">
+          <article class="card">
+            <p class="kicker-label">For People</p>
+            <h3>Architecture they can understand.</h3>
+            <p>
+              SAIL gives executives, architects, developers, and other stakeholders views appropriate to the decisions
+              they need to make.
+            </p>
+            <p>
+              Start with boundaries and context. Reveal structure, behavior, interfaces, and constraints as more detail
+              becomes necessary.
+            </p>
+          </article>
+
+          <article class="card">
+            <p class="kicker-label">For Machines</p>
+            <h3>Architecture they don't have to guess.</h3>
+            <p>
+              The same architecture can be represented as structured data.
+            </p>
+            <p>
+              Systems, components, responsibilities, interactions, interfaces, constraints, and validation rules become
+              explicit architectural context that tools can inspect.
+            </p>
+          </article>
+        </div>
+
+        <p class="statement">
+          The diagram is the human-readable view.<br>
+          The model is the machine-readable architecture.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="what-title">
+      <div class="wrap">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">What SAIL Is</p>
+            <h2 id="what-title">Make architecture explicit.</h2>
+          </div>
+          <p>
+            SAIL is a formal visual language for system-level software architecture. It replaces ambiguous boxes and
+            lines with a small, consistent vocabulary whose elements have defined architectural meaning.
           </p>
-          <div class="actions" style="margin-top: 0;">
-            <a class="button primary" href="book/">Learn More & Download</a>
-            <a class="button support" href="https://www.buymeacoffee.com/thesimmermon" target="_blank">
-              🍕 Buy me a pizza
-            </a>
+        </div>
+
+        <ul class="intent-list" aria-label="SAIL makes architectural intent explicit">
+          <li>Boundaries</li>
+          <li>Responsibilities</li>
+          <li>Behavior</li>
+          <li>Interfaces</li>
+          <li>Constraints</li>
+          <li>Validation rules</li>
+        </ul>
+
+        <div class="pillar-grid">
+          <article class="card compact-card">
+            <span class="card-index">01</span>
+            <h3>Structure</h3>
+            <p><strong>What exists?</strong></p>
+            <p>Systems, service units, datastores, boundaries, dependencies.</p>
+          </article>
+
+          <article class="card compact-card">
+            <span class="card-index">02</span>
+            <h3>Behavior</h3>
+            <p><strong>What does it do?</strong></p>
+            <p>Interactions, scenarios, processes, responsibilities.</p>
+          </article>
+
+          <article class="card compact-card">
+            <span class="card-index">03</span>
+            <h3>Intrinsic</h3>
+            <p><strong>What must remain true?</strong></p>
+            <p>Performance, security, reliability, scalability, risks, constraints.</p>
+          </article>
+
+          <article class="card compact-card">
+            <span class="card-index">+1</span>
+            <h3>Interfaces</h3>
+            <p><strong>What are the contracts?</strong></p>
+            <p>Operations, communication patterns, technologies, ownership.</p>
+          </article>
+        </div>
+
+        <p class="pillar-note">
+          SAIL models architecture through Structural Architecture, Behavioral Architecture, Intrinsic Architecture, and
+          Interfaces (+1).
+        </p>
+        <div class="actions center-actions">
+          <a class="button primary" href="specification/">Read the SAIL Specification</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section example-section" id="real-example" aria-labelledby="example-title">
+      <div class="wrap">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">Real Example</p>
+            <h2 id="example-title">See what this looks like on a real system.</h2>
+          </div>
+          <p>
+            Explore the architecture visually. Read the requirements that drove it. Inspect the machine-readable SAIL
+            model.
+          </p>
+        </div>
+
+        <figure class="example-diagram">
+          <img src="examples/GridGuard/GridGuard-structural-context.svg"
+            alt="GridGuard SAIL structural context architecture diagram">
+          <figcaption>GridGuard structural context diagram, extracted from the existing SAIL architecture viewer.</figcaption>
+        </figure>
+
+        <div class="actions center-actions">
+          <a class="button primary" href="examples/GridGuard/GridGuard-SAIL-ARCHITECTURE.html">Explore This
+            Architecture</a>
+          <a class="button" href="examples/GridGuard/GridGuard.sail" download>Download the .sail Model</a>
+          <a class="button subtle" href="examples/">Browse All Examples</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section guardrails-section" aria-labelledby="guardrails-title">
+      <div class="wrap">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">AI Guardrails</p>
+            <h2 id="guardrails-title">Architecture as AI guardrails.</h2>
+          </div>
+          <p>
+            AI coding agents are extraordinarily good at working with local context. The problem is that architecture is
+            rarely local.
+          </p>
+        </div>
+
+        <div class="flow" aria-label="AI coding agent implementation flow with SAIL architecture context">
+          <div class="flow-step">Developer Request</div>
+          <div class="flow-arrow" aria-hidden="true">↓</div>
+          <div class="flow-step wide">
+            <span>AI Coding Agent + SAIL Architecture Context</span>
+            <ul>
+              <li>Boundaries</li>
+              <li>Responsibilities</li>
+              <li>Interfaces</li>
+              <li>Constraints</li>
+              <li>Validation rules</li>
+            </ul>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">↓</div>
+          <div class="flow-step">Implementation</div>
+        </div>
+
+        <div class="narrative">
+          <p>
+            A change that makes perfect sense inside one repository can violate a boundary, duplicate a responsibility,
+            bypass an interface, or undermine a constraint elsewhere in the system.
+          </p>
+          <p>
+            SAIL gives the agent architectural context alongside source-code context.
+          </p>
+        </div>
+
+        <p class="statement">
+          Don't ask the agent to infer the architecture.<br>
+          Give it the architecture.
+        </p>
+      </div>
+    </section>
+
+    <section class="section continuity-section" aria-labelledby="continuity-title">
+      <div class="wrap continuity-grid">
+        <div>
+          <p class="eyebrow">Human Continuity</p>
+          <h2 id="continuity-title">The reader changed.<br>The requirement didn't.</h2>
+          <p>
+            Architecture has always succeeded or failed based on whether its reader could understand it.
+          </p>
+          <p>
+            An executive needs scope and dependencies. An architect needs boundaries and constraints. A developer needs
+            responsibilities and contracts. An AI coding agent needs those same decisions expressed explicitly enough
+            that it doesn't have to guess.
+          </p>
+          <p>
+            SAIL uses progressive disclosure so the same architecture can remain understandable across those levels.
+          </p>
+        </div>
+        <blockquote>
+          "If a diagram needs an expert narrator to be understood, it's not documentation."
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="section ecosystem-section" aria-labelledby="ecosystem-title">
+      <div class="wrap">
+        <div class="section-heading stacked">
+          <p class="eyebrow">SAIL Ecosystem</p>
+          <h2 id="ecosystem-title">Start using SAIL.</h2>
+        </div>
+
+        <div class="ecosystem-grid">
+          <article class="card">
+            <h3>SAIL Specification</h3>
+            <p>The formal grammar, notation, semantics, and validation rules.</p>
+            <div class="card-actions">
+              <a class="button primary" href="specification/">Read the Specification</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Reference Models</h3>
+            <p>See SAIL applied to complete systems, including requirements, diagrams, and source models.</p>
+            <div class="card-actions">
+              <a class="button primary" href="examples/">Browse Examples</a>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Xebec</h3>
+            <p>Create, inspect, and explore SAIL architecture models.</p>
+            <div class="card-actions">
+              <a class="button primary" href="book/#downloads">Download Xebec</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section book-section" aria-labelledby="book-title">
+      <div class="wrap book-grid">
+        <div class="book-cover" aria-label="Applied Software Architecture book">
+          <img src="sail-logo.png" alt="" aria-hidden="true">
+          <span>Applied Software Architecture</span>
+          <strong>Mastering the SAIL Framework</strong>
+        </div>
+        <div>
+          <p class="eyebrow">Go Deeper With SAIL</p>
+          <h2 id="book-title">Applied Software Architecture</h2>
+          <p class="book-subtitle">Mastering the SAIL Framework<br>by Jim Simmermon</p>
+          <p>
+            Learn SAIL by working through a complete architecture from requirements to structural, behavioral,
+            intrinsic, and machine-readable models.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="sail-ebook.pdf" download>Read the free eBook</a>
+            <a class="button" href="https://www.amazon.com/dp/B0H5QKVND6" target="_blank" rel="noopener">Buy the
+              printed book</a>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-    </div>
+    <section class="section final-cta" aria-labelledby="final-title">
+      <div class="wrap">
+        <p class="eyebrow">Architecture Source Of Truth</p>
+        <h2 id="final-title">Stop making architecture implicit.</h2>
+        <p>
+          Give people and AI coding agents the same architectural source of truth.
+        </p>
+        <div class="actions center-actions">
+          <a class="button primary" href="#real-example">See SAIL in Action</a>
+          <a class="button" href="specification/">Read the Specification</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>

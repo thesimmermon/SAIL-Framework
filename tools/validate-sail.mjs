@@ -16,12 +16,13 @@
 import fs from "node:fs";
 import path from "node:path";
 import process from "node:process";
+import { fileURLToPath } from "node:url";
 import Ajv2020 from "ajv/dist/2020.js";
 
 function parseArgs(argv) {
   const args = {
     sailFile: null,
-    schemaFile: path.join(path.dirname(new URL(import.meta.url).pathname), "sail-architecture.schema.json"),
+    schemaFile: path.join(path.dirname(fileURLToPath(import.meta.url)), "sail-architecture.schema.json"),
     json: false,
   };
 
