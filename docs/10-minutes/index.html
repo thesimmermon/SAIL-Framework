@@ -1,0 +1,642 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <link rel="icon" type="image/png" href="../sail-logo.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08111a">
+  <title>SAIL in 10 Minutes | Software Architecture Iconographic Language</title>
+  <meta name="description"
+    content="Learn the core of SAIL in about ten minutes: system boundaries, structure, behavior, architectural characteristics, interfaces, progressive disclosure, and machine-readable architecture for humans and AI.">
+  <meta property="og:title" content="SAIL in 10 Minutes | Software Architecture Iconographic Language">
+  <meta property="og:description"
+    content="Learn the core of SAIL in about ten minutes: system boundaries, structure, behavior, architectural characteristics, interfaces, progressive disclosure, and machine-readable architecture for humans and AI.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://getsail.org/10-minutes/">
+  <meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="../styles.css?v=1.2">
+  <link rel="stylesheet" href="10-minutes.css?v=1.0">
+</head>
+
+<body class="home-page ten-minute-page">
+  <header class="site-header ten-site-header">
+    <div class="wrap">
+      <nav aria-label="Primary">
+        <a class="brand" href="../">
+          <img src="../sail-logo.png" alt="SAIL Logo" class="brand-logo">
+          SAIL Framework
+        </a>
+        <div class="links">
+          <a href="../">Home</a>
+          <a href="./" aria-current="page">SAIL in 10 Minutes</a>
+          <a href="../specification/">Specification</a>
+          <a href="../examples/">Examples</a>
+          <a href="../book/">Book</a>
+          <a href="../book/#downloads">Downloads</a>
+          <a href="https://github.com/thesimmermon/SAIL-Framework" target="_blank" rel="noopener">GitHub Repo</a>
+        </div>
+      </nav>
+
+      <section class="ten-hero" aria-labelledby="page-title">
+        <div class="ten-hero-copy">
+          <p class="eyebrow">01 / 09 <span aria-hidden="true">&middot;</span> Start here <span
+              aria-hidden="true">&middot;</span> ~10 min read</p>
+          <h1 id="page-title">SAIL in 10 Minutes</h1>
+          <p class="ten-subheadline">Software architecture that humans and AI can actually read.</p>
+          <p>
+            Most architecture documentation fails in one of two ways: it is so vague that it cannot guide
+            implementation, or so detailed that only the author can understand it.
+          </p>
+          <p>
+            SAIL gives software architecture a small, consistent visual language with explicit semantics, allowing a
+            model to remain understandable as it moves from system context toward implementation.
+          </p>
+
+          <div class="new-reader-intro">
+            <p class="kicker-label">Architecture has a new reader.</p>
+            <p>
+              Coding agents can read source code, filenames, comments, tickets, and README files. But those artifacts
+              primarily describe what exists. They do not necessarily tell an agent what the architecture intends.
+            </p>
+          </div>
+        </div>
+
+        <aside class="ten-hero-visual" aria-label="SAIL architecture for people and machines">
+          <div class="panel-label">
+            <span>One architecture</span>
+            <span>Two readable forms</span>
+          </div>
+          <figure class="hero-model-preview">
+            <figcaption>Human-readable diagram</figcaption>
+            <img src="../examples/GridGuard/GridGuard-structural-context.svg"
+              alt="GridGuard Structural Context Diagram showing the GridGuard system and external boundary participants">
+          </figure>
+          <div class="machine-model-preview">
+            <div class="machine-model-heading">
+              <span>Machine-readable model</span>
+              <code>GridGuard.sail</code>
+            </div>
+            <div class="model-field-flow" aria-label="Fields found in the canonical GridGuard SAIL model">
+              <span>Name</span>
+              <span>Inventory</span>
+              <span>StructuralElements</span>
+              <span>Interactions</span>
+              <span>Interfaces</span>
+              <span>Diagrams</span>
+            </div>
+            <a href="../examples/GridGuard/GridGuard.sail">Inspect the authentic model <span
+                aria-hidden="true">&rarr;</span></a>
+          </div>
+        </aside>
+
+        <div class="intent-contrast" role="note" aria-label="Code and architecture describe different truths">
+          <p>Code tells us <strong>what exists.</strong></p>
+          <span aria-hidden="true"></span>
+          <p>Architecture tells us <strong>what is intended.</strong></p>
+        </div>
+      </section>
+    </div>
+  </header>
+
+  <main>
+    <section class="section ten-section" aria-labelledby="what-is-sail-title">
+      <div class="wrap">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">02 <span aria-hidden="true">/</span> Orientation</p>
+            <h2 id="what-is-sail-title">What Is SAIL?</h2>
+          </div>
+          <p>
+            SAIL &mdash; Software Architecture Iconographic Language &mdash; is a formal visual language for modeling
+            software architecture at the system level.
+          </p>
+        </div>
+
+        <div class="architecture-altitude">
+          <div class="altitude-tier">
+            <span class="tier-label">Enterprise Architecture</span>
+            <strong>TOGAF / ArchiMate</strong>
+          </div>
+          <div class="altitude-arrow" aria-hidden="true">&darr;</div>
+          <div class="altitude-tier sail-tier">
+            <span class="tier-label">SAIL</span>
+            <strong>System Architecture</strong>
+          </div>
+          <div class="altitude-arrow" aria-hidden="true">&darr;</div>
+          <div class="altitude-tier">
+            <span class="tier-label">Detailed Design</span>
+            <strong>UML / Code</strong>
+          </div>
+        </div>
+
+        <div class="scope-copy">
+          <p>
+            SAIL describes boundaries, systems, components, integrations, behaviors, contracts, and architectural
+            constraints.
+          </p>
+          <p>
+            It stops before classes, methods, algorithms, and internal implementation details.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ten-section section-tint" aria-labelledby="three-plus-one-title">
+      <div class="wrap">
+        <div class="section-heading stacked centered-heading">
+          <p class="eyebrow">03 <span aria-hidden="true">/</span> The complete architecture</p>
+          <h2 id="three-plus-one-title">One Architecture. Three Views. One Contract Layer.</h2>
+          <p>
+            These are not four unrelated documents. They are different views of the same architecture model.
+          </p>
+        </div>
+
+        <div class="three-plus-one">
+          <div class="contract-layer">
+            <span class="architecture-label">+1 &middot; Interfaces</span>
+            <strong>The Contracts</strong>
+            <p>Operations, messages, schemas, protocols, and reusable contracts across boundaries.</p>
+          </div>
+          <div class="contract-stem" aria-hidden="true"></div>
+          <div class="architecture-views">
+            <article class="architecture-view structural-view">
+              <span class="architecture-label">01 &middot; Structural</span>
+              <h3>What exists?</h3>
+              <p>Systems, Service Units, Datastores, Boundary Participants, and their relationships.</p>
+            </article>
+            <article class="architecture-view behavioral-view">
+              <span class="architecture-label">02 &middot; Behavioral</span>
+              <h3>What happens?</h3>
+              <p>Interactions, scenarios, workflows, and processes.</p>
+            </article>
+            <article class="architecture-view intrinsic-view">
+              <span class="architecture-label">03 &middot; Intrinsic</span>
+              <h3>What must be true?</h3>
+              <p>Performance, reliability, security, constraints, risks, goals, and other architectural qualities.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ten-section" aria-labelledby="elements-title">
+      <div class="wrap">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">04 <span aria-hidden="true">/</span> Structural vocabulary</p>
+            <h2 id="elements-title">Learn Four Elements</h2>
+          </div>
+          <p>
+            You do not need the full element catalog to start reading SAIL. These four shapes explain the essential
+            structure.
+          </p>
+        </div>
+
+        <div class="element-grid">
+          <article class="element-card">
+            <div class="official-symbol">
+              <img src="../specification/images/system-symbol.png"
+                alt="Official SAIL System symbol: a labeled element with a circular type shape">
+            </div>
+            <div>
+              <span class="shape-label">Type shape: circle</span>
+              <h3>System</h3>
+              <p>A deployable or independently operating architectural boundary.</p>
+            </div>
+          </article>
+
+          <article class="element-card">
+            <div class="official-symbol">
+              <img src="../specification/images/boundary-participant-symbol.png"
+                alt="Official SAIL Boundary Participant symbol: a labeled element with a square type shape">
+            </div>
+            <div>
+              <span class="shape-label">Type shape: square</span>
+              <h3>Boundary Participant</h3>
+              <p>Something outside the system that interacts with it: a user, external system, device, or sensor.</p>
+            </div>
+          </article>
+
+          <article class="element-card">
+            <div class="official-symbol">
+              <img src="../specification/images/service-unit-symbol.png"
+                alt="Official SAIL Service Unit symbol: a labeled element with a rectangle-and-header type shape">
+            </div>
+            <div>
+              <span class="shape-label">Visual form: rectangle with header</span>
+              <h3>Service Unit</h3>
+              <p>
+                The leaf-level unit of architectural responsibility. SAIL structural decomposition stops here; classes,
+                methods, algorithms, and internal implementation belong below the SAIL architectural layer.
+              </p>
+            </div>
+          </article>
+
+          <article class="element-card">
+            <div class="official-symbol">
+              <img src="../specification/images/datastore-symbol.png"
+                alt="Official SAIL Datastore symbol: a labeled element with a square type shape and heavy left border">
+            </div>
+            <div>
+              <span class="shape-label">Type shape: square with heavy left border</span>
+              <h3>Datastore</h3>
+              <p>State, persistence, buffering, messaging, or storage.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="type-kind-panel">
+          <div class="type-kind-copy">
+            <p class="eyebrow">Type vs. Kind</p>
+            <h3>The shape gives you the role. The glyph gives you the specialization.</h3>
+            <p>
+              The outer shape tells you the <strong>Type</strong> &mdash; the architectural role the element plays. The
+              glyph inside tells you the <strong>Kind</strong> &mdash; the specialization of that type.
+            </p>
+          </div>
+          <div class="kind-examples" aria-label="Official SAIL Type and Kind examples">
+            <div class="kind-example">
+              <span class="kind-icon">
+                <img src="../specification/images/boundary-user-icon.png" alt="">
+              </span>
+              <span><strong>Square + person glyph</strong>User Boundary Participant</span>
+            </div>
+            <div class="kind-example">
+              <span class="kind-icon">
+                <img src="../specification/images/boundary-device-icon.png" alt="">
+              </span>
+              <span><strong>Square + device glyph</strong>Device Boundary Participant</span>
+            </div>
+            <div class="kind-example">
+              <span class="kind-icon">
+                <img src="../specification/images/system-hosted-api-icon.png" alt="">
+              </span>
+              <span><strong>Circle + API glyph</strong>Hosted API System</span>
+            </div>
+            <div class="kind-example">
+              <span class="kind-icon">
+                <img src="../specification/images/system-interactive-app-icon.png" alt="">
+              </span>
+              <span><strong>Circle + application glyph</strong>Interactive Application System</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ten-section section-tint" aria-labelledby="boundary-title">
+      <div class="wrap">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">05 <span aria-hidden="true">/</span> Structural Context</p>
+            <h2 id="boundary-title">Start With The Boundary</h2>
+          </div>
+          <div class="boundary-question">
+            <span>Every architecture should begin with:</span>
+            <strong>What are we responsible for?</strong>
+          </div>
+        </div>
+
+        <p class="section-intro">
+          The Structural Context Diagram is intentionally minimal. It orients the reader before any internal detail is
+          revealed.
+        </p>
+
+        <figure class="canonical-figure">
+          <div class="diagram-scroll" tabindex="0" role="region"
+            aria-label="Horizontally scrollable GridGuard Structural Context Diagram">
+            <img src="../examples/GridGuard/GridGuard-structural-context.svg"
+              alt="GridGuard Structural Context Diagram with one GridGuard system, external people, systems, sensors, and devices connected by Communication Pathways">
+          </div>
+          <figcaption>
+            GridGuard Structural Context Diagram from the canonical SAIL example. Solid squares at pathway ends are
+            Provider Markers.
+          </figcaption>
+        </figure>
+
+        <div class="context-legend">
+          <article>
+            <span>01</span>
+            <h3>One System</h3>
+            <p>The architecture under consideration.</p>
+          </article>
+          <article>
+            <span>02</span>
+            <h3>Boundary Participants</h3>
+            <p>The people, devices, sensors, and external systems outside it.</p>
+          </article>
+          <article>
+            <span>03</span>
+            <h3>Communication Pathways</h3>
+            <p>Structural relationships between architectural elements.</p>
+          </article>
+        </div>
+
+        <aside class="provider-callout" aria-labelledby="provider-marker-title">
+          <div class="provider-visual" aria-hidden="true">
+            <span class="provider-line"></span>
+            <span class="provider-square"></span>
+          </div>
+          <div>
+            <p class="kicker-label">A small mark with an important meaning</p>
+            <h3 id="provider-marker-title">Provider Marker</h3>
+            <p>
+              The small solid square on a Communication Pathway identifies the element that provides or implements the
+              contract. It does not show which direction data travels.
+            </p>
+            <p class="provider-test">
+              Ask: <strong>Who can change this interface and force the other side to adapt?</strong> That is normally
+              the provider.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section ten-section" aria-labelledby="disclosure-title">
+      <div class="wrap">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">06 <span aria-hidden="true">/</span> Progressive disclosure</p>
+            <h2 id="disclosure-title">Reveal Detail Only When It Matters</h2>
+          </div>
+          <p>
+            SAIL does not try to put the entire architecture on one diagram. Start with orientation. Reveal detail only
+            when the reader needs it.
+          </p>
+        </div>
+
+        <ol class="disclosure-steps" aria-label="SAIL progressive disclosure levels">
+          <li>
+            <span>01</span>
+            <strong>Structural Context</strong>
+            <small>See the boundary</small>
+          </li>
+          <li>
+            <span>02</span>
+            <strong>System Decomposition</strong>
+            <small>Open the system</small>
+          </li>
+          <li>
+            <span>03</span>
+            <strong>Subsystem Decomposition</strong>
+            <small>Follow responsibility</small>
+          </li>
+          <li>
+            <span>04</span>
+            <strong>Service Units</strong>
+            <small>Reach implementable leaves</small>
+          </li>
+        </ol>
+
+        <div class="progressive-figures">
+          <figure class="canonical-figure">
+            <div class="diagram-scroll" tabindex="0" role="region"
+              aria-label="Horizontally scrollable Order Management Structural Context Diagram">
+              <img src="../specification/images/order-management-structural-context.png"
+                alt="Official SAIL Structural Context Diagram for an Order Management System and its Boundary Participants">
+            </div>
+            <figcaption><strong>Start:</strong> one opaque System and its external Boundary Participants.</figcaption>
+          </figure>
+
+          <figure class="canonical-figure">
+            <div class="diagram-scroll tall-diagram" tabindex="0" role="region"
+              aria-label="Horizontally scrollable Order Management Hierarchical Diagram">
+              <img src="../specification/images/order-management-hierarchical-decomposition.png"
+                alt="Official SAIL Hierarchical Diagram revealing Service Units, a Datastore, interfaces, and external connections inside the Order Management System">
+            </div>
+            <figcaption><strong>Reveal:</strong> the Hierarchical Diagram opens the System and ends at Service Units.</figcaption>
+          </figure>
+        </div>
+
+        <div class="systems-of-systems">
+          <p>
+            A System may contain smaller Systems. Those Systems can be decomposed again.
+          </p>
+          <p>
+            Eventually the architecture reaches Service Units: the leaf-level architectural responsibilities where SAIL
+            stops and implementation begins.
+          </p>
+          <strong>This is SAIL's systems-of-systems model.</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ten-section section-tint" aria-labelledby="behavior-title">
+      <div class="wrap">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">07 <span aria-hidden="true">/</span> Behavior + qualities</p>
+            <h2 id="behavior-title">Structure Isn't Enough</h2>
+          </div>
+          <p class="structure-behavior-line">
+            <strong>Structure tells us what exists.</strong><br>
+            Behavior tells us what the architecture actually does.
+          </p>
+        </div>
+
+        <div class="interaction-grid">
+          <article>
+            <span class="interaction-kind">Simple Interaction</span>
+            <h3>A named behavior</h3>
+            <p>A behavior that does not require further architectural decomposition.</p>
+          </article>
+          <article>
+            <span class="interaction-kind">Composite Interaction</span>
+            <h3>A behavior made of behaviors</h3>
+            <p>A larger behavior composed of smaller named interactions.</p>
+          </article>
+          <article>
+            <span class="interaction-kind">Process Interaction</span>
+            <h3>A precise architectural flow</h3>
+            <p>A behavior that requires a step-by-step Process Diagram.</p>
+          </article>
+        </div>
+
+        <figure class="canonical-figure behavioral-figure">
+          <div class="diagram-scroll" tabindex="0" role="region"
+            aria-label="Horizontally scrollable Order Management Behavioral Context Diagram">
+            <img src="../specification/images/order-management-behavioral-context.png"
+              alt="Official SAIL Behavioral Context Diagram showing Boundary Participants pointing toward Place Order, Ship Order, and Cancel Order interactions">
+          </div>
+          <figcaption>Official Behavioral Context Diagram from the SAIL specification.</figcaption>
+        </figure>
+
+        <div class="rule-banner" role="note">
+          <span class="rule-mark" aria-hidden="true">&rarr;</span>
+          <p>
+            <strong>Interaction arrows indicate participation.</strong> They point toward the interaction. They do not
+            represent data flow.
+          </p>
+        </div>
+
+        <div class="intrinsic-intro">
+          <p class="eyebrow">Intrinsic Architecture</p>
+          <h3>Architecture Also Has To Make Promises</h3>
+          <p>
+            Architecture is not only what the system contains or what it does. It also defines the conditions under
+            which the design is considered successful.
+          </p>
+        </div>
+
+        <div class="force-grid" aria-label="GridGuard architectural forces">
+          <div>
+            <span class="force-value">&lt; 60 sec</span>
+            <strong>Detect to notify</strong>
+            <p>Confirmed fire events need an end-to-end response target.</p>
+          </div>
+          <div>
+            <span class="force-value">24 hours</span>
+            <strong>Connectivity may disappear</strong>
+            <p>The architecture includes an offline buffer strategy.</p>
+          </div>
+          <div>
+            <span class="force-value">50,000</span>
+            <strong>Nodes per region</strong>
+            <p>Scale is part of the architecture, not an afterthought.</p>
+          </div>
+          <div>
+            <span class="force-value">5 years</span>
+            <strong>Battery-life target</strong>
+            <p>Field devices operate under severe power constraints.</p>
+          </div>
+          <div>
+            <span class="force-value">5 req/sec</span>
+            <strong>Legacy dispatch ceiling</strong>
+            <p>The NEDS Mainframe must not be flooded.</p>
+          </div>
+        </div>
+
+        <p class="intrinsic-conclusion">
+          These are not incidental implementation details. They are architectural forces. SAIL captures those forces
+          explicitly as <strong>Intrinsic Characteristics.</strong>
+        </p>
+      </div>
+    </section>
+
+    <section class="section ten-section new-reader-section" aria-labelledby="new-reader-title">
+      <div class="wrap">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">08 <span aria-hidden="true">/</span> Machine-readable intent</p>
+            <h2 id="new-reader-title">Architecture Has a New Reader</h2>
+          </div>
+          <p>
+            Traditionally architecture documentation had three primary audiences. Now there is another reader.
+          </p>
+        </div>
+
+        <div class="audience-row" aria-label="Readers of architecture">
+          <div>
+            <span>Business stakeholders</span>
+            <p>Scope and outcomes</p>
+          </div>
+          <div>
+            <span>Architects</span>
+            <p>Boundaries, decisions, responsibilities, interfaces, and constraints</p>
+          </div>
+          <div>
+            <span>Developers</span>
+            <p>Enough clarity to build the intended system</p>
+          </div>
+          <div class="agent-audience">
+            <span>AI coding agents</span>
+            <p>Explicit architectural context</p>
+          </div>
+        </div>
+
+        <div class="new-reader-grid">
+          <div class="agent-copy">
+            <p class="agent-lede">
+              An AI coding agent can inspect source code and infer an architecture.
+              <strong>But inference is not intent.</strong>
+            </p>
+            <p>A machine-readable SAIL model can explicitly tell tools:</p>
+            <ul class="machine-context-list">
+              <li>what systems exist,</li>
+              <li>what is inside and outside the system boundary,</li>
+              <li>which responsibilities belong to which architectural elements,</li>
+              <li>which interfaces are valid,</li>
+              <li>which operations exist,</li>
+              <li>and which architectural constraints must not be violated.</li>
+            </ul>
+          </div>
+
+          <div class="reader-branch" aria-label="A SAIL model produces human views and machine context">
+            <div class="branch-root">
+              <span>Shared source of truth</span>
+              <strong>SAIL Model</strong>
+            </div>
+            <div class="branch-lines" aria-hidden="true">
+              <span></span>
+              <span></span>
+            </div>
+            <div class="branch-outputs">
+              <div>
+                <span>Human Views</span>
+                <strong>Diagrams</strong>
+                <small>Readable architectural views</small>
+              </div>
+              <div>
+                <span>Machine Context</span>
+                <strong>Structured Model</strong>
+                <small>Explicit architecture data</small>
+              </div>
+            </div>
+            <a class="model-source-link" href="../examples/GridGuard/GridGuard.sail">
+              Open the canonical GridGuard model <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <p class="people-machines-statement">
+          The diagrams are for people.<br>
+          <strong>The model is for people and machines.</strong>
+        </p>
+
+        <div class="intent-not-automation">
+          <p>The goal is not to let AI make architecture decisions.</p>
+          <p>
+            The goal is to stop AI from having to guess what architecture decisions have already been made.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section ten-section final-cta ten-final" aria-labelledby="summary-title">
+      <div class="wrap">
+        <p class="eyebrow">09 <span aria-hidden="true">/</span> The core idea</p>
+        <h2 id="summary-title">That's SAIL.</h2>
+
+        <div class="summary-lines">
+          <p><strong>Structure</strong> describes what exists.</p>
+          <p><strong>Behavior</strong> describes what happens.</p>
+          <p><strong>Intrinsic characteristics</strong> describe what must be true.</p>
+          <p><strong>Interfaces</strong> define the contracts.</p>
+        </div>
+
+        <p class="summary-copy">
+          SAIL starts at the system boundary and progressively reveals architectural detail until it reaches components
+          builders can implement. The same architecture can be represented visually for people and structurally for
+          machines.
+        </p>
+
+        <div class="actions center-actions next-actions">
+          <a class="button primary" href="../examples/">Explore an Example</a>
+          <a class="button" href="../specification/">Read the SAIL Specification</a>
+          <a class="button" href="../book/">Learn SAIL With the Book</a>
+          <a class="button subtle" href="../book/#downloads">Explore or Download Xebec</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>SAIL Framework &copy; 2026. A formal visual language for software architecture.</p>
+    </div>
+  </footer>
+</body>
+
+</html>
