@@ -318,7 +318,7 @@ class Checker:
                         f"'{name}' references missing subdiagram '{subdiagram_id}'.",
                         [element_id, str(subdiagram_id)],
                     )
-                if element_type == 0:
+                if element_type == 0 and not element.get("IsStandIn"):
                     self.add(
                         "warning",
                         "BOUNDARY_PARTICIPANT_HAS_SUBDIAGRAM",
