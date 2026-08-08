@@ -269,13 +269,55 @@
         "Inventory.Interfaces.*.Operations.*.OperationType"
       ],
       "observedValues": [
+        "Conversation",
+        "Generic",
         "One Way",
-        "Request / Ack",
+        "Pub / Sub",
         "Request / Response",
+        "Request / Ack",
         "Streaming",
         "Webhook"
       ],
-      "description": "Operation type is stored as a string in the observed .sail files, not as a numeric enum."
+      "description": "Operation type is stored as a string, not a numeric enum. These are the eight standard Operation Kinds in the Specification, spelled exactly as Xebec serializes them. Note the spaces around the slash in 'Pub / Sub', 'Request / Ack' and 'Request / Response'. Previously this list held only the five kinds that happened to appear in the GridGuard reference model, which made a model using Pub / Sub, Conversation or Generic fail semantic-check-sail.py --strict."
+    },
+    "ElementSubType": {
+      "fieldPaths": [
+        "Inventory.StructuralElements.*.SubType"
+      ],
+      "description": "The Kind of a structural element, stored as a string and keyed by ElementType. These strings are what Xebec serializes and what its icon set is named after; they are NOT always the Specification's display names. Writing a display name instead produces an element that validates cleanly and then renders with no icon, which is why they are enumerated here. Each type also supports 'Generic'.",
+      "valuesByElementType": {
+        "0": {
+          "name": "BoundaryParticipant",
+          "values": ["Device", "External System", "Generic", "Sensor", "User"]
+        },
+        "1": {
+          "name": "System",
+          "values": ["Command Line App", "Generic", "Hosted API", "Service Daemon", "User Interactive App"]
+        },
+        "2": {
+          "name": "Datastore",
+          "values": ["Bus", "File Storage", "Generic", "NoSql Database", "Queue", "Relational Database"]
+        },
+        "3": {
+          "name": "ServiceUnit",
+          "values": ["API Call Handler", "Closed Source", "Generic", "Integration", "Orchestrator", "Processor", "Reusable Code Library", "UI Component", "User Interface"]
+        }
+      }
+    },
+    "NoteKind": {
+      "fieldPaths": [
+        "*.Elements.*.Kind",
+        "*Diagrams.*.Elements.*.Kind"
+      ],
+      "observedValues": [
+        "Annotation",
+        "Concept",
+        "Information",
+        "Legend",
+        "Rationale",
+        "ToDo"
+      ],
+      "description": "Kind of a DiagramNote. Semantically independent: notes never change the architectural model."
     },
     "DiagramObjectType": {
       "fieldPaths": [

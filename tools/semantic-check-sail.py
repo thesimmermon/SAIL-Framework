@@ -33,11 +33,32 @@ from typing import Any, Iterable, Optional
 
 
 DEFAULT_OPERATION_TYPES = {
+    "Conversation",
+    "Generic",
     "One Way",
+    "Pub / Sub",
     "Request / Ack",
     "Request / Response",
     "Streaming",
     "Webhook",
+}
+
+# The Kind of a structural element, keyed by ElementType. These are the strings
+# Xebec serializes, and its icon set is named after them. They are not always the
+# Specification's display names -- 'Library' is stored as 'Reusable Code Library',
+# 'Interactive App' as 'User Interactive App', 'API Handler' as 'API Call Handler'
+# -- so a generator that writes the display name produces an element that passes
+# every other check and then renders with no icon. Overridden by the codebook's
+# ElementSubType entry when present.
+DEFAULT_ELEMENT_SUBTYPES = {
+    0: {"Device", "External System", "Generic", "Sensor", "User"},
+    1: {"Command Line App", "Generic", "Hosted API", "Service Daemon",
+        "User Interactive App"},
+    2: {"Bus", "File Storage", "Generic", "NoSql Database", "Queue",
+        "Relational Database"},
+    3: {"API Call Handler", "Closed Source", "Generic", "Integration",
+        "Orchestrator", "Processor", "Reusable Code Library", "UI Component",
+        "User Interface"},
 }
 
 # Numeric enum values from current SAIL/Xebec JSON serialization.
@@ -99,6 +120,7 @@ class Checker:
         self.interfaces = self._dict(inventory.get("Interfaces"))
 
         self.operation_types = self._load_operation_types()
+        self.element_subtypes = self._load_element_subtypes()
         self.operations_by_id = self._build_operations_by_id()
         self.diagrams_by_id = self._build_diagrams_by_id()
         self.diagram_container_by_id = self._build_diagram_container_by_id()
@@ -129,6 +151,7 @@ class Checker:
             "SERVICE_UNIT_HAS_SUBDIAGRAM",
             "BOUNDARY_PARTICIPANT_HAS_SUBDIAGRAM",
             "UNKNOWN_OPERATION_TYPE",
+            "UNKNOWN_ELEMENT_SUBTYPE",
             "UNRESOLVED_CHARMAP_REFERENCE",
             "UNRESOLVED_SUBDIAGRAM_REFERENCE",
         }:
@@ -144,6 +167,25 @@ class Checker:
         if isinstance(observed, list) and all(isinstance(x, str) for x in observed):
             return {x for x in observed if x.strip()}
         return set(DEFAULT_OPERATION_TYPES)
+
+    def _load_element_subtypes(self) -> dict[int, set[str]]:
+        entry = (
+            self.codebook.get("stringEnums", {})
+            .get("ElementSubType", {})
+            .get("valuesByElementType")
+        )
+        if not isinstance(entry, dict):
+            return {k: set(v) for k, v in DEFAULT_ELEMENT_SUBTYPES.items()}
+        out: dict[int, set[str]] = {}
+        for key, spec in entry.items():
+            try:
+                et = int(key)
+            except (TypeError, ValueError):
+                continue
+            values = spec.get("values") if isinstance(spec, dict) else None
+            if isinstance(values, list) and all(isinstance(x, str) for x in values):
+                out[et] = {x for x in values if x.strip()}
+        return out or {k: set(v) for k, v in DEFAULT_ELEMENT_SUBTYPES.items()}
 
     def _build_operations_by_id(self) -> dict[str, dict[str, Any]]:
         ops: dict[str, dict[str, Any]] = {}
@@ -307,6 +349,22 @@ class Checker:
 
             if element_type in {0, 1, 2, 3} and self._blank(subtype):
                 self.add("info", "BLANK_ELEMENT_SUBTYPE", f"{path}.SubType", f"Structural element '{name}' has no subtype/kind.", [element_id])
+
+            # A Kind outside the canonical set has no icon to render. Nothing else
+            # in the toolchain catches it: the schema types SubType as a free
+            # string, so the only symptom is a blank glyph in Xebec.
+            if element_type in self.element_subtypes and not self._blank(subtype):
+                allowed = self.element_subtypes[element_type]
+                if subtype not in allowed:
+                    self.add(
+                        "warning",
+                        "UNKNOWN_ELEMENT_SUBTYPE",
+                        f"{path}.SubType",
+                        f"Structural element '{name}' uses unknown "
+                        f"{ELEMENT_TYPE_NAMES.get(element_type, element_type)} Kind '{subtype}'. "
+                        f"Expected one of: {', '.join(sorted(allowed))}.",
+                        [element_id],
+                    )
 
             subdiagram_id = element.get("SubDiagramId")
             if not self._blank(subdiagram_id):
