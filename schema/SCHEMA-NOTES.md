@@ -27,6 +27,27 @@ The following enum mappings were supplied and are included in `sail-codebook.jso
 
 The schema now constrains `SourceEdge` and `TargetEdge` to those values.
 
+## Automatic connection points
+
+`SourceIsDynamic` and `TargetIsDynamic` (booleans) were added to `DiagramConnectorBase`,
+`DiagramBehavioralConnector`, and `DiagramCommunicationPathway`. They mark a connector end as
+*automatic*: the editor recalculates that end's edge and offset whenever either attached element is
+moved or resized, instead of leaving it where the author placed it.
+
+Two properties of the design matter to anyone reading a `.sail`:
+
+- **`SourceEdge`/`SourceOffset` remain the authoritative values** and are rewritten on every
+  recalculation. A consumer that ignores these flags still renders the connector in the right place.
+  The flags only say whether the editor is free to move the point.
+- **Both are optional — deliberately.** Every other property in these three blocks is listed in
+  `required`, and all three set `"additionalProperties": false`. Adding these to `required` would
+  invalidate every `.sail` written before the feature existed; omitting them from `properties` would
+  invalidate every one written after. They are therefore in `properties` only. Keep it that way, and
+  apply the same reasoning to any future connector property.
+
+Note these definitions are flat rather than composed — `DiagramConnector` is a `oneOf` over the three,
+each repeating the base properties — so a new connector property has to be added in all three places.
+
 ## Still worth confirming
 
 The examples contain `OperationType` as strings, including:
