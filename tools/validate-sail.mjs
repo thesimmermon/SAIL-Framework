@@ -11,6 +11,9 @@
  *   node validate-sail.mjs path/to/model.sail
  *   node validate-sail.mjs path/to/model.sail --schema path/to/sail-architecture.schema.json
  *   node validate-sail.mjs path/to/model.sail --json
+ *
+ * The schema defaults to schema/sail-architecture.schema.json in this repository. Pass --schema
+ * only to validate against a schema somewhere else on purpose.
  */
 
 import fs from "node:fs";
@@ -19,10 +22,20 @@ import process from "node:process";
 import { fileURLToPath } from "node:url";
 import Ajv2020 from "ajv/dist/2020.js";
 
+// The schema has exactly one home: schema/ at the repository root. Tools resolve it from there
+// rather than keeping a copy alongside themselves, so a schema edit cannot leave the validators
+// checking against a stale duplicate.
+const DEFAULT_SCHEMA = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+  "schema",
+  "sail-architecture.schema.json",
+);
+
 function parseArgs(argv) {
   const args = {
     sailFile: null,
-    schemaFile: path.join(path.dirname(fileURLToPath(import.meta.url)), "sail-architecture.schema.json"),
+    schemaFile: DEFAULT_SCHEMA,
     json: false,
   };
 

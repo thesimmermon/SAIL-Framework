@@ -4,6 +4,11 @@ Simple validators for Xebec/SAIL `.sail` files.
 
 This validates the **file shape** against `sail-architecture.schema.json`. It does not replace semantic SAIL assessment. After this passes, the course platform should still run semantic checks such as reference resolution, diagram-specific SAIL rules, scenario alignment, and architectural judgment assessment.
 
+Both validators resolve the schema from `../schema/sail-architecture.schema.json` by default. That
+file is the single copy; do not place another one next to these scripts, or a schema edit will leave
+the validators checking against a stale duplicate. Pass `--schema` only to check against a schema
+somewhere else on purpose.
+
 ## Python validator
 
 Install dependency:

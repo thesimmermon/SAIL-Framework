@@ -1,0 +1,26 @@
+# Local development leftovers only.
+#
+# Deliberately NOT ignored: docs/downloads/ tracks .zip, .msi, .tar.gz and .pdf release
+# artifacts on purpose (see AGENTS.md), so do not add broad archive or binary patterns here.
+
+# Node — created by `cd tools; npm install`
+node_modules/
+package-lock.json
+
+# Python — created by running the tools in tools/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Credentials and local environment
+.env
+.env.*
+
+# Editor and OS noise
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

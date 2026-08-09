@@ -9,6 +9,9 @@ Usage:
   python validate_sail.py path/to/model.sail --schema path/to/sail-architecture.schema.json
   python validate_sail.py path/to/model.sail --json
 
+The schema defaults to schema/sail-architecture.schema.json in this repository. Pass --schema only
+to validate against a schema somewhere else on purpose.
+
 Exit codes:
   0 = valid
   1 = invalid JSON or schema validation failed
@@ -22,6 +25,11 @@ import json
 import sys
 from pathlib import Path
 from typing import Any
+
+# The schema has exactly one home: schema/ at the repository root. Tools resolve it from there
+# rather than keeping a copy alongside themselves, so a schema edit cannot leave the validators
+# checking against a stale duplicate.
+DEFAULT_SCHEMA = Path(__file__).resolve().parent.parent / "schema" / "sail-architecture.schema.json"
 
 try:
     from jsonschema import Draft202012Validator
@@ -67,8 +75,8 @@ def main() -> int:
     parser.add_argument(
         "--schema",
         type=Path,
-        default=Path(__file__).with_name("sail-architecture.schema.json"),
-        help="Path to the SAIL JSON Schema file. Defaults to sail-architecture.schema.json next to this script.",
+        default=DEFAULT_SCHEMA,
+        help="Path to the SAIL JSON Schema file. Defaults to schema/sail-architecture.schema.json in the repository.",
     )
     parser.add_argument("--json", action="store_true", help="Emit machine-readable JSON output")
     parser.add_argument("--max-errors", type=int, default=50, help="Maximum validation errors to print")
