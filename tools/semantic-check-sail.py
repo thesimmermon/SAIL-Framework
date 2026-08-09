@@ -57,8 +57,7 @@ DEFAULT_ELEMENT_SUBTYPES = {
     2: {"Bus", "File Storage", "Generic", "NoSql Database", "Queue",
         "Relational Database"},
     3: {"API Call Handler", "Closed Source", "Generic", "Integration",
-        "Orchestrator", "Processor", "Reusable Code Library", "UI Component",
-        "User Interface"},
+        "Orchestrator", "Processor", "Reusable Code Library", "UI Component"},
 }
 
 # Numeric enum values from current SAIL/Xebec JSON serialization.

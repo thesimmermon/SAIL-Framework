@@ -300,7 +300,7 @@
         },
         "3": {
           "name": "ServiceUnit",
-          "values": ["API Call Handler", "Closed Source", "Generic", "Integration", "Orchestrator", "Processor", "Reusable Code Library", "UI Component", "User Interface"]
+          "values": ["API Call Handler", "Closed Source", "Generic", "Integration", "Orchestrator", "Processor", "Reusable Code Library", "UI Component"]
         }
       }
     },
