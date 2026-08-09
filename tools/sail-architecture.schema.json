@@ -1560,6 +1560,14 @@
         "TargetEdge": {
           "$ref": "#/$defs/DiagramElementEdge"
         },
+        "SourceIsDynamic": {
+          "type": "boolean",
+          "description": "Optional. When true the source connection point is automatic: SourceEdge and SourceOffset are recalculated whenever either attached element moves or is resized. They remain the authoritative values either way, so a reader that ignores this flag still renders the connector correctly. Absent means the point is pinned where the author placed it."
+        },
+        "TargetIsDynamic": {
+          "type": "boolean",
+          "description": "Optional. When true the target connection point is automatic: TargetEdge and TargetOffset are recalculated whenever either attached element moves or is resized. They remain the authoritative values either way, so a reader that ignores this flag still renders the connector correctly. Absent means the point is pinned where the author placed it."
+        },
         "Waypoints": {
           "type": "array",
           "items": {
@@ -1641,6 +1649,14 @@
         },
         "TargetEdge": {
           "$ref": "#/$defs/DiagramElementEdge"
+        },
+        "SourceIsDynamic": {
+          "type": "boolean",
+          "description": "Optional. When true the source connection point is automatic: SourceEdge and SourceOffset are recalculated whenever either attached element moves or is resized. They remain the authoritative values either way, so a reader that ignores this flag still renders the connector correctly. Absent means the point is pinned where the author placed it."
+        },
+        "TargetIsDynamic": {
+          "type": "boolean",
+          "description": "Optional. When true the target connection point is automatic: TargetEdge and TargetOffset are recalculated whenever either attached element moves or is resized. They remain the authoritative values either way, so a reader that ignores this flag still renders the connector correctly. Absent means the point is pinned where the author placed it."
         },
         "Waypoints": {
           "type": "array",
@@ -1728,6 +1744,14 @@
         },
         "TargetEdge": {
           "$ref": "#/$defs/DiagramElementEdge"
+        },
+        "SourceIsDynamic": {
+          "type": "boolean",
+          "description": "Optional. When true the source connection point is automatic: SourceEdge and SourceOffset are recalculated whenever either attached element moves or is resized. They remain the authoritative values either way, so a reader that ignores this flag still renders the connector correctly. Absent means the point is pinned where the author placed it."
+        },
+        "TargetIsDynamic": {
+          "type": "boolean",
+          "description": "Optional. When true the target connection point is automatic: TargetEdge and TargetOffset are recalculated whenever either attached element moves or is resized. They remain the authoritative values either way, so a reader that ignores this flag still renders the connector correctly. Absent means the point is pinned where the author placed it."
         },
         "Waypoints": {
           "type": "array",
