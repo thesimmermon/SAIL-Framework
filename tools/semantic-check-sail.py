@@ -383,7 +383,7 @@ class Checker:
                         f"Boundary participant '{name}' has a subdiagram. Boundary participants are usually external and not decomposed.",
                         [element_id, str(subdiagram_id)],
                     )
-                if element_type == 3:
+                if element_type == 3 and not element.get("IsStandIn"):
                     self.add(
                         "warning",
                         "SERVICE_UNIT_HAS_SUBDIAGRAM",
